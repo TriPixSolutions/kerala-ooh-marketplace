@@ -2,6 +2,11 @@ import { NextResponse } from "next/server";
 import crypto from "node:crypto";
 import { createAdminClient } from "@/lib/supabase/admin";
 
+function secureEqual(a: string, b: string) {
+  if (!a || !b || a.length !== b.length) return false;
+  return crypto.timingSafeEqual(Buffer.from(a), Buffer.from(b));
+}
+
 export async function POST(request: Request) {
   const rawBody = await request.text();
   const signature = request.headers.get("x-razorpay-signature") || "";
@@ -9,10 +14,8 @@ export async function POST(request: Request) {
   const secret = process.env.RAZORPAY_WEBHOOK_SECRET;
 
   if (!secret || !signature || !eventId) return NextResponse.json({ error: "Invalid webhook configuration or headers" }, { status: 400 });
-
   const expected = crypto.createHmac("sha256", secret).update(rawBody).digest("hex");
-  const valid = expected.length === signature.length && crypto.timingSafeEqual(Buffer.from(expected), Buffer.from(signature));
-  if (!valid) return NextResponse.json({ error: "Invalid webhook signature" }, { status: 401 });
+  if (!secureEqual(expected, signature)) return NextResponse.json({ error: "Invalid webhook signature" }, { status: 401 });
 
   let payload: any;
   try { payload = JSON.parse(rawBody); } catch { return NextResponse.json({ error: "Invalid JSON" }, { status: 400 }); }
@@ -28,19 +31,24 @@ export async function POST(request: Request) {
 
   try {
     const event = String(payload.event || "");
+    const payment = payload?.payload?.payment?.entity;
+    const order = payload?.payload?.order?.entity;
     if (event === "payment.captured" || event === "order.paid") {
-      const paymentEntity = payload?.payload?.payment?.entity;
-      const orderEntity = payload?.payload?.order?.entity;
-      const orderId = paymentEntity?.order_id || orderEntity?.id;
-      const paymentId = paymentEntity?.id;
-      if (orderId && paymentId) {
-        const { data: transaction } = await admin.from("payment_transactions").select("id").eq("provider_order_id", orderId).maybeSingle();
-        if (transaction) {
-          await admin.rpc("webhook_capture_payment", {
-            p_payment_id: transaction.id,
-            p_provider_payment_id: paymentId,
-            p_provider_signature: signature,
-          });
+      const orderId = payment?.order_id || order?.id;
+      const providerPaymentId = payment?.id;
+      const providerAmount = Number(payment?.amount ?? order?.amount_paid ?? order?.amount ?? NaN);
+      const providerCurrency = String(payment?.currency ?? order?.currency ?? "").toUpperCase();
+
+      if (orderId && providerPaymentId) {
+        const { data: tx } = await admin.from("payment_transactions").select("id,provider_order_id,amount,currency,status").eq("provider_order_id", orderId).maybeSingle();
+        if (tx) {
+          const expectedMinor = Math.round(Number(tx.amount) * 100);
+          if (Number.isFinite(providerAmount) && providerAmount !== expectedMinor) throw new Error("Webhook amount does not match recorded payment order");
+          if (providerCurrency && providerCurrency !== String(tx.currency || "INR").toUpperCase()) throw new Error("Webhook currency does not match recorded payment order");
+          if (tx.status !== "CAPTURED") {
+            const { error } = await admin.rpc("webhook_capture_payment", { p_payment_id: tx.id, p_provider_payment_id: providerPaymentId, p_provider_signature: signature });
+            if (error) throw new Error(error.message);
+          }
         }
       }
     }
