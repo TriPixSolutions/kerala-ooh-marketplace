@@ -19,7 +19,6 @@ export async function POST(request: Request) {
     .eq("conversation_id", conversationId)
     .eq("user_id", user.id)
     .maybeSingle();
-
   if (!membership) return NextResponse.json({ error: "You are not part of this conversation" }, { status: 403 });
 
   const { data, error } = await supabase
@@ -27,7 +26,24 @@ export async function POST(request: Request) {
     .insert({ conversation_id: conversationId, sender_id: user.id, body: message })
     .select("id,conversation_id,sender_id,body,created_at,read_at")
     .single();
-
   if (error) return NextResponse.json({ error: error.message }, { status: 400 });
+
+  const { data: recipients } = await supabase
+    .from("conversation_members")
+    .select("user_id")
+    .eq("conversation_id", conversationId)
+    .neq("user_id", user.id);
+
+  if (recipients?.length) {
+    await supabase.from("notifications").insert(
+      recipients.map((recipient) => ({
+        user_id: recipient.user_id,
+        type: "NEW_MESSAGE",
+        title: "New message",
+        body: "You have a new message about an advertising space.",
+      })),
+    );
+  }
+
   return NextResponse.json({ message: data }, { status: 201 });
 }
