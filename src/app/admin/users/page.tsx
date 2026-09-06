@@ -1,0 +1,13 @@
+import Link from "next/link";
+import { redirect } from "next/navigation";
+import { createClient } from "@/lib/supabase/server";
+
+export default async function AdminUsersPage() {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) redirect("/auth/login");
+  const { data: profile } = await supabase.from("profiles").select("role, status").eq("id", user.id).single();
+  if (!profile || profile.role !== "SUPER_ADMIN" || profile.status !== "ACTIVE") redirect("/dashboard");
+  const { data: users } = await supabase.from("profiles").select("id, full_name, company_name, role, status, created_at").order("created_at", { ascending: false }).limit(100);
+  return <main className="min-h-screen bg-[var(--surface)] text-[var(--ink)]"><header className="border-b border-[var(--border)] bg-white"><div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 lg:px-8"><Link href="/admin" className="text-[15px] font-semibold tracking-[0.16em]">YOUR AD SPACE / ADMIN</Link><Link href="/admin" className="text-sm text-[var(--slate)]">Back to overview</Link></div></header><div className="mx-auto max-w-7xl px-5 py-10 lg:px-8"><p className="text-sm uppercase tracking-[0.16em] text-[var(--muted)]">People</p><h1 className="mt-2 text-4xl font-semibold tracking-[-0.04em]">Users</h1><div className="mt-8 overflow-hidden rounded-2xl border border-[var(--border)] bg-white"><div className="overflow-x-auto"><table className="w-full min-w-[760px] text-left text-sm"><thead className="border-b border-[var(--border)] bg-[var(--surface)]"><tr><th className="px-5 py-4 font-semibold">User</th><th className="px-5 py-4 font-semibold">Role</th><th className="px-5 py-4 font-semibold">Status</th><th className="px-5 py-4 font-semibold">Joined</th></tr></thead><tbody>{(users ?? []).map((item) => <tr key={item.id} className="border-b border-[var(--border)] last:border-0"><td className="px-5 py-4"><p className="font-semibold">{item.full_name || "Unnamed user"}</p><p className="mt-1 text-xs text-[var(--muted)]">{item.company_name || item.id}</p></td><td className="px-5 py-4"><span className="rounded-full border border-[var(--border)] px-2.5 py-1 text-xs font-medium">{item.role}</span></td><td className="px-5 py-4"><span className="rounded-full border border-[var(--border)] px-2.5 py-1 text-xs font-medium">{item.status}</span></td><td className="px-5 py-4 text-[var(--slate)]">{new Date(item.created_at).toLocaleDateString("en-IN")}</td></tr>)}</tbody></table></div>{users?.length === 0 && <div className="p-8 text-sm text-[var(--muted)]">No users found.</div>}</div></div></main>;
+}
