@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const locations = ["Kochi", "Thiruvananthapuram", "Kozhikode", "Thrissur", "Malappuram", "Kannur"];
 
 export default function HomePage() {
@@ -5,14 +7,14 @@ export default function HomePage() {
     <main className="min-h-screen bg-[var(--surface)] text-[var(--ink)]">
       <header className="border-b border-[var(--border)] bg-white/90 backdrop-blur">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-8">
-          <a href="/" className="text-[15px] font-semibold tracking-[0.16em]">YOUR AD SPACE</a>
+          <Link href="/" className="text-[15px] font-semibold tracking-[0.16em]">YOUR AD SPACE</Link>
           <nav className="hidden items-center gap-8 text-sm text-[var(--slate)] md:flex">
-            <a href="#spaces" className="hover:text-[var(--ink)]">Spaces</a>
-            <a href="#locations" className="hover:text-[var(--ink)]">Locations</a>
-            <a href="#how-it-works" className="hover:text-[var(--ink)]">How it works</a>
-            <a href="#owners" className="hover:text-[var(--ink)]">For listing owners</a>
+            <Link href="/listings" className="hover:text-[var(--ink)]">Spaces</Link>
+            <Link href="/#locations" className="hover:text-[var(--ink)]">Locations</Link>
+            <Link href="/#how-it-works" className="hover:text-[var(--ink)]">How it works</Link>
+            <Link href="/#owners" className="hover:text-[var(--ink)]">For listing owners</Link>
           </nav>
-          <button className="rounded-xl bg-[var(--ink)] px-4 py-2.5 text-sm font-semibold text-white">Sign in</button>
+          <Link href="/auth/login" className="rounded-xl bg-[var(--ink)] px-4 py-2.5 text-sm font-semibold text-white">Sign in</Link>
         </div>
       </header>
 
@@ -35,37 +37,41 @@ export default function HomePage() {
                 <option>All spaces</option><option>Billboard</option><option>Hoarding</option><option>LED screen</option><option>Restaurant screen</option>
               </select>
             </label>
-            <button className="min-h-14 rounded-xl bg-[var(--ink)] px-7 text-sm font-semibold text-white">Search spaces</button>
+            <Link href="/listings" className="flex min-h-14 items-center justify-center rounded-xl bg-[var(--ink)] px-7 text-sm font-semibold text-white">Search spaces</Link>
           </div>
         </div>
 
         <div id="spaces" className="mt-16 grid gap-5 md:grid-cols-3">
-          {[
-            ["Listed spaces", "Kerala-wide", "Browse advertising inventory by location."],
-            ["Compare what matters", "Price · Reach", "See the decision-making details before you enquire."],
-            ["Start a conversation", "Directly", "Ask the listing owner about availability and campaign fit."],
-          ].map(([label, title, copy]) => (
-            <div key={title} className="rounded-2xl border border-[var(--border)] bg-white p-6">
-              <p className="text-sm text-[var(--slate)]">{label}</p><p className="mt-2 text-3xl font-semibold tracking-tight">{title}</p><p className="mt-2 text-sm text-[var(--muted)]">{copy}</p>
-            </div>
-          ))}
+          <Link href="/listings" className="rounded-2xl border border-[var(--border)] bg-white p-6 transition hover:border-[var(--border-strong)]">
+            <p className="text-sm text-[var(--slate)]">Listed spaces</p><p className="mt-2 text-3xl font-semibold tracking-tight">Kerala-wide</p><p className="mt-2 text-sm text-[var(--muted)]">Browse advertising inventory by location.</p>
+          </Link>
+          <Link href="/listings" className="rounded-2xl border border-[var(--border)] bg-white p-6 transition hover:border-[var(--border-strong)]">
+            <p className="text-sm text-[var(--slate)]">Compare what matters</p><p className="mt-2 text-3xl font-semibold tracking-tight">Price · Reach</p><p className="mt-2 text-sm text-[var(--muted)]">See the decision-making details before you enquire.</p>
+          </Link>
+          <Link href="/auth/login" className="rounded-2xl border border-[var(--border)] bg-white p-6 transition hover:border-[var(--border-strong)]">
+            <p className="text-sm text-[var(--slate)]">Start a conversation</p><p className="mt-2 text-3xl font-semibold tracking-tight">Directly</p><p className="mt-2 text-sm text-[var(--muted)]">Sign in to ask a listing owner about availability and campaign fit.</p>
+          </Link>
         </div>
 
         <section id="locations" className="mt-24 border-t border-[var(--border)] pt-10">
-          <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end"><div><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">Explore locations</p><h2 className="mt-2 text-3xl font-semibold tracking-[-0.03em]">Start with a city.</h2></div><a href="#locations" className="text-sm font-semibold underline underline-offset-4">View all locations</a></div>
-          <div className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">{locations.map((location) => <button key={location} className="flex items-center justify-between rounded-xl border border-[var(--border)] bg-white px-5 py-4 text-left text-sm font-medium hover:border-[var(--border-strong)]">{location}<span className="text-[var(--muted)]">→</span></button>)}</div>
+          <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end"><div><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">Explore locations</p><h2 className="mt-2 text-3xl font-semibold tracking-[-0.03em]">Start with a city.</h2></div><Link href="/listings" className="text-sm font-semibold underline underline-offset-4">View all locations</Link></div>
+          <div className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {locations.map((location) => <Link key={location} href={`/listings?city=${encodeURIComponent(location)}`} className="flex items-center justify-between rounded-xl border border-[var(--border)] bg-white px-5 py-4 text-left text-sm font-medium hover:border-[var(--border-strong)]">{location}<span className="text-[var(--muted)]">→</span></Link>)}
+          </div>
         </section>
 
         <section id="how-it-works" className="mt-24 grid gap-8 border-t border-[var(--border)] pt-12 lg:grid-cols-3">
-          {["Search", "Compare", "Enquire"].map((step, index) => <div key={step}><p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">0{index + 1}</p><h3 className="mt-4 text-xl font-semibold">{step}</h3><p className="mt-3 max-w-sm text-sm leading-6 text-[var(--slate)]">{index === 0 ? "Find spaces by city, advertising type, price and campaign requirements." : index === 1 ? "Understand dimensions, estimated views, availability and location context." : "Send an enquiry and continue the discussion directly with the space owner."}</p></div>)}
+          <Link href="/listings" className="block"><p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">01</p><h3 className="mt-4 text-xl font-semibold">Search</h3><p className="mt-3 max-w-sm text-sm leading-6 text-[var(--slate)]">Find spaces by city, advertising type, price and campaign requirements.</p></Link>
+          <Link href="/listings" className="block"><p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">02</p><h3 className="mt-4 text-xl font-semibold">Compare</h3><p className="mt-3 max-w-sm text-sm leading-6 text-[var(--slate)]">Understand dimensions, estimated views, availability and location context.</p></Link>
+          <Link href="/auth/login" className="block"><p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">03</p><h3 className="mt-4 text-xl font-semibold">Enquire</h3><p className="mt-3 max-w-sm text-sm leading-6 text-[var(--slate)]">Send an enquiry and continue the discussion directly with the space owner.</p></Link>
         </section>
 
         <section id="owners" className="mt-24 rounded-3xl bg-[var(--ink)] px-7 py-10 text-white sm:px-10 lg:px-12">
-          <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between"><div className="max-w-2xl"><p className="text-sm font-semibold uppercase tracking-[0.16em] text-white/55">For listing owners</p><h2 className="mt-4 text-3xl font-semibold tracking-[-0.03em] sm:text-4xl">Put your advertising spaces where campaigns are looking.</h2><p className="mt-4 max-w-xl text-sm leading-6 text-white/65">Create a listing, manage availability and pricing, and receive enquiries from businesses and agencies.</p></div><button className="rounded-xl bg-white px-5 py-3 text-sm font-semibold text-[var(--ink)]">List a space</button></div>
+          <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between"><div className="max-w-2xl"><p className="text-sm font-semibold uppercase tracking-[0.16em] text-white/55">For listing owners</p><h2 className="mt-4 text-3xl font-semibold tracking-[-0.03em] sm:text-4xl">Put your advertising spaces where campaigns are looking.</h2><p className="mt-4 max-w-xl text-sm leading-6 text-white/65">Create a listing, manage availability and pricing, and receive enquiries from businesses and agencies.</p></div><Link href="/owner/listings/new" className="rounded-xl bg-white px-5 py-3 text-sm font-semibold text-[var(--ink)]">List a space</Link></div>
         </section>
       </section>
 
-      <footer className="border-t border-[var(--border)] bg-white"><div className="mx-auto flex max-w-7xl flex-col gap-3 px-6 py-8 text-sm text-[var(--slate)] sm:flex-row sm:items-center sm:justify-between lg:px-8"><span className="font-semibold text-[var(--ink)]">YOUR AD SPACE</span><span>Find the space. Understand the opportunity. Start the conversation.</span></div></footer>
+      <footer className="border-t border-[var(--border)] bg-white"><div className="mx-auto flex max-w-7xl flex-col gap-3 px-6 py-8 text-sm text-[var(--slate)] sm:flex-row sm:items-center sm:justify-between lg:px-8"><Link href="/" className="font-semibold text-[var(--ink)]">YOUR AD SPACE</Link><span>Find the space. Understand the opportunity. Start the conversation.</span></div></footer>
     </main>
   );
 }
