@@ -1,0 +1,167 @@
+export interface ProductItem {
+  id: string;
+  name: string;
+  category: "Veneers" | "Decorative Panels" | "Hardware" | "Plywood" | "Home Systems";
+  code: string;
+  grade: string;
+  image: string;
+  colors: string[];
+  description: string;
+  specs: string;
+}
+
+export const productsCatalog: ProductItem[] = [
+  {
+    id: "walnut-flitch",
+    name: "Mondrian Flitch",
+    category: "Veneers",
+    code: "VN-01",
+    grade: "Grade A+ Crown Cut",
+    image: "https://images.unsplash.com/photo-1546484475-7f7bd55792da?q=85&w=800&auto=format&fit=crop",
+    colors: ["#66462c", "#8c6239", "#3b2314"],
+    description: "Bookmatched American black walnut with consecutive log numbering and zero sapwood inclusions.",
+    specs: "0.6mm thickness • FSC 100% • 3050 x 1220mm",
+  },
+  {
+    id: "smoked-oak",
+    name: "Set Up Oak",
+    category: "Veneers",
+    code: "VN-02",
+    grade: "Quarter Sliced",
+    image: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=85&w=800&auto=format&fit=crop",
+    colors: ["#544338", "#786558", "#33261f"],
+    description: "Deep thermo-treated European white oak with straight linear medullary rays and tactile matte grain.",
+    specs: "0.8mm thickness • PEFC Certified • Class B-s1 fire retardant",
+  },
+  {
+    id: "eucalyptus",
+    name: "Nara Eucalyptus",
+    category: "Veneers",
+    code: "VN-03",
+    grade: "Figured Pommele",
+    image: "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?q=85&w=800&auto=format&fit=crop",
+    colors: ["#7a5230", "#996b42", "#472e18"],
+    description: "Iridescent smoked eucalyptus offering three-dimensional optical depth under raking light.",
+    specs: "0.6mm thickness • Bookmatched pair sets",
+  },
+  {
+    id: "fluted-acoustic",
+    name: "Wetside Acoustic",
+    category: "Decorative Panels",
+    code: "DP-01",
+    grade: "NRC 0.85 Certified",
+    image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?q=85&w=800&auto=format&fit=crop",
+    colors: ["#2b2b2b", "#8b6a4d", "#d1c7bd"],
+    description: "Precision micro-ribbed timber battens set on high-density sound dampening PET acoustic substrate.",
+    specs: "2400 x 600 x 22mm • Class A Sound Absorption",
+  },
+  {
+    id: "liquid-bronze",
+    name: "Tribeca Patina",
+    category: "Decorative Panels",
+    code: "DP-02",
+    grade: "Hand-Burnished",
+    image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=85&w=800&auto=format&fit=crop",
+    colors: ["#634b35", "#8c6b45", "#2a1e16"],
+    description: "Real atomized cold-cast bronze applied onto structural moisture-resistant fiberboard with beeswax finish.",
+    specs: "Custom dimensions to 3600mm height",
+  },
+  {
+    id: "reeded-louvers",
+    name: "Soari Louver",
+    category: "Decorative Panels",
+    code: "DP-03",
+    grade: "Architectural Relief",
+    image: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=85&w=800&auto=format&fit=crop",
+    colors: ["#b8977e", "#7d5d47", "#3b2b20"],
+    description: "Scalloped semicircular timber flutes providing rhythmic shadow plays for feature elevations and curved partitions.",
+    specs: "Solid white ash or teak core • Flexible backing available",
+  },
+  {
+    id: "pivot-hinge",
+    name: "Mush Pivot 3D",
+    category: "Hardware",
+    code: "HW-01",
+    grade: "Concealed Heavy-Duty",
+    image: "https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?q=85&w=800&auto=format&fit=crop",
+    colors: ["#171717", "#998063", "#silver"],
+    description: "Invisible 3-way adjustable floor and ceiling pivot bearing capable of handling 160kg full-height floor-to-ceiling doors.",
+    specs: "200,000 mechanical test cycles • Soft-closing damping",
+  },
+  {
+    id: "drawer-slide",
+    name: "Bristal Motion",
+    category: "Hardware",
+    code: "HW-02",
+    grade: "Whisper Synchronized",
+    image: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=85&w=800&auto=format&fit=crop",
+    colors: ["#333333", "#777777", "#cccccc"],
+    description: "Concealed undermount drawer runner system with integrated fluid soft-close and push-to-open dual mechanisms.",
+    specs: "70kg dynamic load rating • ±1.5mm tool-less adjustment",
+  },
+  {
+    id: "brass-pull",
+    name: "Blute Architectural Pull",
+    category: "Hardware",
+    code: "HW-03",
+    grade: "Solid Forged",
+    image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=85&w=800&auto=format&fit=crop",
+    colors: ["#bfa15f", "#403222", "#1a1a1a"],
+    description: "Extruded unlacquered brass profiles with living hand-aged patination for integrated joinery handles.",
+    specs: "Length: 400mm / 800mm / 1200mm continuous profile",
+  },
+  {
+    id: "marine-birch",
+    name: "Dream Core Marine",
+    category: "Plywood",
+    code: "PL-01",
+    grade: "IS:710 Marine 4X Calibrated",
+    image: "https://images.unsplash.com/photo-1504148455328-c376907d081c?q=85&w=800&auto=format&fit=crop",
+    colors: ["#d9b897", "#b89069", "#785536"],
+    description: "Zero-void 100% Northern European birch core cross-laminated and bonded with fortified phenolic resin.",
+    specs: "18mm & 25mm • 72-hour boiling water resistant • CARB II",
+  },
+  {
+    id: "fire-retardant-board",
+    name: "Ernest Calibrated Core",
+    category: "Plywood",
+    code: "PL-02",
+    grade: "Class 1 Fire Retardant",
+    image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?q=85&w=800&auto=format&fit=crop",
+    colors: ["#bf9b7a", "#8c6b4d", "#402d1d"],
+    description: "Pressure-impregnated fire-retardant structural timber board engineered for commercial luxury hotels and towers.",
+    specs: "IS:5509 compliant • Zero smoke toxicity rating",
+  },
+  {
+    id: "wardrobe-system",
+    name: "Hotel Living System",
+    category: "Home Systems",
+    code: "HS-01",
+    grade: "Integrated Architectural Millwork",
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=85&w=800&auto=format&fit=crop",
+    colors: ["#1f1d1b", "#544336", "#8c6e4e"],
+    description: "Floor-to-ceiling walk-in dressing suite with smoked bronze aluminum uprights, micro-LED lighting, and leather drawers.",
+    specs: "Bespoke heights up to 3400mm • Wireless sensor lighting",
+  },
+];
+
+export const featuredBanners = [
+  {
+    name: "UBE Collection",
+    tagline: "Sleek, innovative and functional designs for contemporary living",
+    image: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=85&w=1200&auto=format&fit=crop",
+    href: "/collections",
+  },
+  {
+    name: "Koishi Island System",
+    tagline: "Architectural monolithic kitchen island clad in quarter-cut walnut and Calacatta marble",
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=85&w=1200&auto=format&fit=crop",
+    href: "/collections",
+  },
+  {
+    name: "Lexington Wardrobe Suite",
+    tagline: "The boundary between wall and bespoke joinery disappears into seamless warmth",
+    image: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=85&w=1200&auto=format&fit=crop",
+    href: "/collections",
+  },
+];

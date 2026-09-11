@@ -1,191 +1,173 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
-import type { Metadata } from "next";
+import Link from "next/link";
 import { Container } from "@/components/shared/Container";
-import { Button } from "@/components/shared/Button";
-import { CTABanner } from "@/components/shared/CTA";
-import { companyData } from "@/lib/data/company";
-import { TreePine, Cog, ShieldCheck, Award } from "lucide-react";
-
-export const metadata: Metadata = {
-  title: "About HYLY | Craftsmanship Heritage & Philosophy",
-  description:
-    "Discover the heritage, mission, and technical standards of HYLY. For 25 years, engineering rare architectural veneers, precision hardware, and bespoke craftsmanship.",
-  alternates: {
-    canonical: "https://hyly.luxury/about",
-  },
-};
+import { PoliformCTA } from "@/components/home/PoliformCTA";
+import { ArrowUpRight, ArrowRight } from "lucide-react";
 
 export default function AboutPage() {
   return (
-    <div className="pt-36 sm:pt-44 md:pt-48 bg-[#F7F5F2]">
-      {/* 1. Hero & Company Story */}
-      <section className="pb-20 sm:pb-32 border-b border-[#E5E5E5]">
-        <Container size="wide">
-          <div className="max-w-4xl mx-auto text-center mb-16 sm:mb-24">
-            <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#8B6A4D] mb-4 block">
-              Heritage & Philosophy
+    <div className="pt-24 sm:pt-28 bg-[#F7F5F2] min-h-screen">
+      <Container size="wide">
+        <div className="max-w-5xl mx-auto space-y-12 sm:space-y-16 pb-16">
+          {/* Top 2-Image Collage matching Reference 4 */}
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 pt-4">
+            <div className="relative aspect-[4/3] rounded-[24px] sm:rounded-[28px] overflow-hidden bg-[#EAE7E1] shadow-sm">
+              <Image
+                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=85&w=800&auto=format&fit=crop"
+                alt="HYLY Atelier Architecture"
+                fill
+                priority
+                sizes="50vw"
+                className="object-cover object-center"
+              />
+            </div>
+            <div className="relative aspect-[4/3] rounded-[24px] sm:rounded-[28px] overflow-hidden bg-[#EAE7E1] shadow-sm">
+              <Image
+                src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=85&w=800&auto=format&fit=crop"
+                alt="HYLY Joinery Atmosphere"
+                fill
+                priority
+                sizes="50vw"
+                className="object-cover object-center"
+              />
+            </div>
+          </div>
+
+          {/* About Us Heading & Mission Statement matching Reference 4 */}
+          <div className="space-y-4">
+            <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#8B6A4D] block">
+              Identity & Heritage
             </span>
-            <h1 className="font-serif-editorial text-4xl sm:text-6xl md:text-7xl lg:text-[76px] font-normal leading-[1.08] text-[#171717] tracking-tight mb-8">
-              A Quarter-Century of <br />
-              <span className="italic font-light">Artisanal Mastery</span>
+            <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-[#111111]">
+              About Us
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-[#6B6B6B] leading-relaxed max-w-2xl mx-auto">
-              {companyData.shortBio}
+            <p className="text-base sm:text-xl text-[#6B6B6B] max-w-2xl leading-relaxed font-normal">
+              Welcome to HYLY Interior, where luxury materials, botanical timber purity, and architectural functionality converge in every design.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center max-w-6xl mx-auto">
-            <div className="lg:col-span-6">
-              <div className="relative aspect-[4/3.5] w-full rounded-[28px] overflow-hidden bg-[#EAE7E1] shadow-[0_20px_45px_rgba(0,0,0,0.06)]">
-                <Image
-                  src="https://images.unsplash.com/photo-1504148455328-c376907d081c?q=85&w=1600&auto=format&fit=crop"
-                  alt="HYLY Master Craftsman Bench Joinery"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover object-center"
-                />
-              </div>
-            </div>
-
-            <div className="lg:col-span-6 space-y-6 text-base text-[#6B6B6B] leading-relaxed">
-              <h2 className="font-serif-editorial text-3xl sm:text-4xl text-[#171717]">
-                The Origin of HYLY
-              </h2>
-              <p>{companyData.story.origin}</p>
-              <p>{companyData.story.heritage}</p>
-              <p>{companyData.story.philosophy}</p>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* 2 & 3. Mission & Vision */}
-      <section className="py-24 sm:py-32 border-b border-[#E5E5E5]">
-        <Container size="wide">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            <div className="p-8 sm:p-12 bg-white rounded-[28px] border border-[#E5E5E5] shadow-[0_10px_25px_rgba(0,0,0,0.02)]">
-              <span className="text-xs font-mono uppercase tracking-widest text-[#8B6A4D] mb-4 block">
-                Our Purpose
-              </span>
-              <h3 className="font-serif-editorial text-3xl sm:text-4xl font-normal text-[#171717] mb-6">
-                The Mission
-              </h3>
-              <p className="text-base sm:text-lg text-[#6B6B6B] leading-relaxed">
-                "{companyData.mission}"
-              </p>
-            </div>
-
-            <div className="p-8 sm:p-12 bg-white rounded-[28px] border border-[#E5E5E5] shadow-[0_10px_25px_rgba(0,0,0,0.02)]">
-              <span className="text-xs font-mono uppercase tracking-widest text-[#8B6A4D] mb-4 block">
-                Our Horizon
-              </span>
-              <h3 className="font-serif-editorial text-3xl sm:text-4xl font-normal text-[#171717] mb-6">
-                The Vision
-              </h3>
-              <p className="text-base sm:text-lg text-[#6B6B6B] leading-relaxed">
-                "{companyData.vision}"
-              </p>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* 4. Core Values */}
-      <section className="py-24 sm:py-32 border-b border-[#E5E5E5]">
-        <Container size="wide">
-          <div className="max-w-3xl mx-auto text-center mb-16 sm:mb-24">
-            <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#8B6A4D] mb-3 block">
-              Ethical Pillars
-            </span>
-            <h2 className="font-serif-editorial text-4xl sm:text-5xl font-normal text-[#171717] tracking-tight">
-              Four Tenets Guiding Every Commission
+          {/* "Crafting Timeless Spaces" & Founders / Craftsmen Portrait matching Reference 4 */}
+          <div className="poliform-card p-6 sm:p-10 bg-white border border-[#E5E5E5] space-y-6">
+            <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-[#111111]">
+              Crafting Timeless Spaces
             </h2>
+            <p className="text-sm sm:text-base text-[#6B6B6B] leading-relaxed max-w-2xl font-light">
+              HYLY's talent is its know-how: a capacity that merges architectural culture and material science, which, prior to becoming a physical gesture on site, is an exacting design idea.
+            </p>
+
+            <div className="relative aspect-[16/9] w-full rounded-[24px] overflow-hidden bg-[#EAE7E1]">
+              <Image
+                src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=85&w=1400&auto=format&fit=crop"
+                alt="HYLY Master Craftsmen and Architectural Leadership"
+                fill
+                sizes="100vw"
+                className="object-cover object-center"
+              />
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {companyData.coreValues.map((val) => (
-              <div
-                key={val.number}
-                className="p-8 sm:p-10 bg-white rounded-[28px] border border-[#E5E5E5] shadow-[0_10px_25px_rgba(0,0,0,0.02)]"
-              >
-                <div className="font-serif-editorial text-2xl text-[#8B6A4D] mb-4">
-                  Pillar {val.number}
-                </div>
-                <h3 className="font-serif-editorial text-3xl font-normal text-[#171717] mb-2">
-                  {val.title}
-                </h3>
-                <div className="text-xs font-mono text-[#8B6A4D] mb-4">
-                  {val.tagline}
-                </div>
-                <p className="text-sm sm:text-base text-[#6B6B6B] leading-relaxed">
-                  {val.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* 5. Technical Standards */}
-      <section className="py-24 sm:py-32 border-b border-[#E5E5E5]">
-        <Container size="wide">
-          <div className="max-w-3xl mx-auto text-center mb-16 sm:mb-24">
-            <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#8B6A4D] mb-3 block">
-              Technical Rigor
+          {/* "Our History" Dark Obsidian Card matching Reference 4 */}
+          <div className="rounded-[28px] sm:rounded-[36px] bg-[#111111] text-white p-8 sm:p-12 space-y-5 shadow-xl">
+            <span className="text-xs font-mono uppercase tracking-widest text-[#8B6A4D]">
+              Quarter-Century Heritage
             </span>
-            <h2 className="font-serif-editorial text-4xl sm:text-5xl font-normal text-[#171717] tracking-tight">
-              Engineering Tolerances & Substrates
+            <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-white">
+              Our History
             </h2>
+            <p className="text-sm sm:text-base text-white/80 leading-relaxed font-light max-w-2xl">
+              HYLY was founded to transform artisan timber veneer expertise into precision architectural interior solutions. Over decades of collaboration with top architectural practices across South India and the Middle East, our name has come to symbolize flexibility, simplicity, elegance, and future-forward craftsmanship.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto mb-16">
-            {companyData.technicalCapabilities.map((cap) => (
-              <div
-                key={cap.title}
-                className="p-8 bg-white rounded-[28px] border border-[#E5E5E5]"
-              >
-                <div className="font-serif-editorial text-4xl font-normal text-[#8B6A4D] mb-2">
-                  {cap.metric}
+          {/* "Our Knowledge" Card matching Reference 4 */}
+          <div className="poliform-card p-6 sm:p-10 bg-white border border-[#E5E5E5] space-y-6">
+            <div className="relative aspect-[16/9] w-full rounded-[24px] overflow-hidden bg-[#EAE7E1]">
+              <Image
+                src="https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?q=85&w=1400&auto=format&fit=crop"
+                alt="HYLY Joinery Workshop & Material Science Facility"
+                fill
+                sizes="100vw"
+                className="object-cover object-center"
+              />
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#111111]">
+              Our Knowledge
+            </h2>
+            <p className="text-sm sm:text-base text-[#6B6B6B] leading-relaxed max-w-2xl font-light">
+              HYLY's strength is its expertise, combining botanical wood culture and sub-millimeter manufacturing knowledge to resolve complex design ideas into seamless architectural realities.
+            </p>
+          </div>
+
+          {/* "Art of The Day System" & "Art of The Night System" Cards matching Reference 4 */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Day System Card */}
+            <div className="group relative rounded-[28px] overflow-hidden bg-[#EAE7E1] aspect-[4/3] p-6 sm:p-8 flex flex-col justify-end shadow-sm border border-[#E5E5E5]">
+              <Image
+                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=85&w=800&auto=format&fit=crop"
+                alt="Art of The Day System"
+                fill
+                sizes="50vw"
+                className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+
+              <div className="relative z-10 flex items-end justify-between text-white">
+                <div>
+                  <span className="text-[10px] font-mono tracking-widest uppercase text-[#D4AF37] block mb-1">
+                    Architectural Living
+                  </span>
+                  <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white">
+                    Art Of The Day System
+                  </h3>
                 </div>
-                <h3 className="text-sm font-medium text-[#171717] mb-2">
-                  {cap.title}
-                </h3>
-                <p className="text-xs text-[#6B6B6B] leading-relaxed">
-                  {cap.description}
-                </p>
+                <Link
+                  href="/collections#day-systems"
+                  aria-label="View Day System"
+                  className="btn-circle-arrow shadow-md"
+                >
+                  <ArrowUpRight className="w-4 h-4" />
+                </Link>
               </div>
-            ))}
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            <div className="p-8 bg-white rounded-[28px] border border-[#E5E5E5]">
-              <h3 className="text-xl font-medium text-[#171717] mb-3 flex items-center gap-2">
-                <TreePine className="w-5 h-5 text-[#8B6A4D]" />
-                FSC® Sustainable Chain of Custody
-              </h3>
-              <p className="text-sm text-[#6B6B6B] leading-relaxed">
-                100% of our timber is harvested from certified sustainable forests, backed by full chain-of-custody documentation for green building and LEED compliance.
-              </p>
             </div>
 
-            <div className="p-8 bg-white rounded-[28px] border border-[#E5E5E5]">
-              <h3 className="text-xl font-medium text-[#171717] mb-3 flex items-center gap-2">
-                <Cog className="w-5 h-5 text-[#8B6A4D]" />
-                European Hardware Integration
-              </h3>
-              <p className="text-sm text-[#6B6B6B] leading-relaxed">
-                All cabinetry and architectural doors integrate European concealed 3D hinges, synchronized runners tested to 200,000 cycles, and magnetic strikes for silent movement.
-              </p>
+            {/* Night System Card */}
+            <div className="group relative rounded-[28px] overflow-hidden bg-[#EAE7E1] aspect-[4/3] p-6 sm:p-8 flex flex-col justify-end shadow-sm border border-[#E5E5E5]">
+              <Image
+                src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=85&w=800&auto=format&fit=crop"
+                alt="Art of The Night System"
+                fill
+                sizes="50vw"
+                className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+
+              <div className="relative z-10 flex items-end justify-between text-white">
+                <div>
+                  <span className="text-[10px] font-mono tracking-widest uppercase text-[#D4AF37] block mb-1">
+                    Bespoke Dressing
+                  </span>
+                  <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white">
+                    Art Of The Night System
+                  </h3>
+                </div>
+                <Link
+                  href="/collections#night-systems"
+                  aria-label="View Night System"
+                  className="btn-circle-arrow shadow-md"
+                >
+                  <ArrowUpRight className="w-4 h-4" />
+                </Link>
+              </div>
             </div>
           </div>
-        </Container>
-      </section>
+        </div>
+      </Container>
 
-      <CTABanner
-        title="Elevate Your Next Architectural Commission"
-        subtitle="Schedule a private consultation at our flagship design labs in Kochi, Bangalore, or Dubai."
-      />
+      {/* Poliform Large Black CTA Section */}
+      <PoliformCTA />
     </div>
   );
 }

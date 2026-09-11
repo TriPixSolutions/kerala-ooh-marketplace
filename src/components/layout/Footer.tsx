@@ -2,63 +2,26 @@
 
 import React from "react";
 import Link from "next/link";
-import { companyData } from "@/lib/data/company";
 import { Container } from "@/components/shared/Container";
-import { ArrowUpRight } from "lucide-react";
+import { footerNavigation } from "@/lib/data/navigation";
 
 export function Footer() {
-  const quickLinks = [
-    { label: "Home", href: "/" },
-    { label: "About HYLY", href: "/about" },
-    { label: "Disciplines", href: "/services" },
-    { label: "Selected Works", href: "/projects" },
-    { label: "Contact & Studios", href: "/contact" },
-  ];
-
-  const servicesLinks = [
-    { label: "Natural Veneers", href: "/services#veneers" },
-    { label: "Decorative Materials", href: "/services#decorative-materials" },
-    { label: "Hardware Solutions", href: "/services#hardware-solutions" },
-    { label: "Plywood & Boards", href: "/services#plywood-boards" },
-    { label: "Home Applications", href: "/services#home-applications" },
-    { label: "Custom Craftsmanship", href: "/services#custom-craftsmanship" },
-  ];
-
-  const socialLinks = [
-    { name: "Instagram", href: "https://instagram.com" },
-    { name: "LinkedIn", href: "https://linkedin.com" },
-    { name: "Pinterest", href: "https://pinterest.com" },
-    { name: "ArchDaily", href: "https://archdaily.com" },
-  ];
-
   return (
-    <footer className="bg-[#F7F5F2] border-t border-[#E5E5E5] text-[#171717] pt-20 pb-12">
+    <footer className="bg-[#111111] text-white pt-16 sm:pt-24 pb-12 overflow-hidden border-t border-white/10">
       <Container size="wide">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 pb-16 border-b border-[#E5E5E5] max-w-6xl mx-auto">
-          {/* Brand Col */}
-          <div className="md:col-span-4 space-y-4">
-            <Link
-              href="/"
-              className="font-serif-editorial text-3xl italic text-[#171717] block"
-            >
-              HYLY
-            </Link>
-            <p className="text-sm text-[#6B6B6B] leading-relaxed max-w-sm">
-              Architectural craftsmanship and interior material solutions. Engineering botanical warmth and mechanical precision for visionary spaces.
-            </p>
-          </div>
-
-          {/* Quick Links */}
-          <div className="md:col-span-2">
-            <span className="text-xs font-mono uppercase tracking-widest text-[#8B6A4D] block mb-4">
-              Navigation
-            </span>
-            <ul className="space-y-2.5 text-sm text-[#6B6B6B]">
-              {quickLinks.map((item) => (
+        {/* Top Two Column Layout matching Poliform Mobile Reference */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 sm:gap-12 pb-16 border-b border-white/10">
+          {/* Column 1: About */}
+          <div>
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-white/40 mb-6">
+              About
+            </h4>
+            <ul className="space-y-3.5">
+              {footerNavigation.about.map((item) => (
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    className="hover:text-[#171717] transition-colors"
+                    className="text-sm text-[#A3A3A3] hover:text-white transition-colors"
                   >
                     {item.label}
                   </Link>
@@ -67,17 +30,17 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Services */}
-          <div className="md:col-span-3">
-            <span className="text-xs font-mono uppercase tracking-widest text-[#8B6A4D] block mb-4">
-              Disciplines
-            </span>
-            <ul className="space-y-2.5 text-sm text-[#6B6B6B]">
-              {servicesLinks.map((item) => (
+          {/* Column 2: Customer Service */}
+          <div>
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-white/40 mb-6">
+              Customer Service
+            </h4>
+            <ul className="space-y-3.5">
+              {footerNavigation.customerService.map((item) => (
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    className="hover:text-[#171717] transition-colors"
+                    className="text-sm text-[#A3A3A3] hover:text-white transition-colors"
                   >
                     {item.label}
                   </Link>
@@ -86,58 +49,53 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Contact & Socials */}
-          <div className="md:col-span-3 space-y-6">
-            <div>
-              <span className="text-xs font-mono uppercase tracking-widest text-[#8B6A4D] block mb-4">
-                Atelier Concierge
-              </span>
-              <div className="text-sm text-[#6B6B6B] space-y-1">
-                <a
-                  href={`tel:${companyData.contact.phone}`}
-                  className="block hover:text-[#171717] transition-colors"
-                >
-                  {companyData.contact.phone}
-                </a>
-                <a
-                  href={`mailto:${companyData.contact.email}`}
-                  className="block hover:text-[#171717] transition-colors"
-                >
-                  {companyData.contact.email}
-                </a>
-              </div>
-            </div>
-
-            <div>
-              <span className="text-xs font-mono uppercase tracking-widest text-[#8B6A4D] block mb-2">
-                Follow
-              </span>
-              <div className="flex flex-wrap gap-3 text-xs text-[#6B6B6B]">
-                {socialLinks.map((soc) => (
+          {/* Column 3: Social Media */}
+          <div>
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-white/40 mb-6">
+              Social Media
+            </h4>
+            <ul className="space-y-3.5">
+              {footerNavigation.socials.map((item) => (
+                <li key={item.name}>
                   <a
-                    key={soc.name}
-                    href={soc.href}
+                    href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-[#171717] inline-flex items-center gap-0.5"
+                    className="text-sm text-[#A3A3A3] hover:text-white transition-colors"
                   >
-                    {soc.name} <ArrowUpRight className="w-3 h-3 opacity-60" />
+                    {item.name}
                   </a>
-                ))}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 4: Experience Centres */}
+          <div>
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-white/40 mb-6">
+              Experience Centres
+            </h4>
+            <div className="space-y-3 text-sm text-[#A3A3A3]">
+              <p>Kochi Flagship • Panampilly Nagar</p>
+              <p>Bangalore Studio • Indiranagar</p>
+              <p>Dubai Atelier • Design District (d3)</p>
+              <div className="pt-2">
+                <span className="inline-block px-3 py-1 rounded-full bg-white/10 text-[11px] text-[#8B6A4D] font-mono">
+                  ISO 9001 & FSC® Certified
+                </span>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Bottom Rights */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#6B6B6B] max-w-6xl mx-auto">
-          <div>
-            © {new Date().getFullYear()} HYLY Craftsmanship & Interior Solutions.
-          </div>
-          <div className="flex items-center gap-6">
-            <span>FSC® Certified</span>
-            <span>E0 Formaldehyde Safe</span>
-            <span>IS:710 Marine Core</span>
+        {/* Bottom Giant Brand Wordmark matching Poliform Reference */}
+        <div className="pt-12 flex flex-col items-center justify-center text-center">
+          <h2 className="text-[20vw] font-bold tracking-tighter text-white/90 leading-none select-none pointer-events-none">
+            HYLY
+          </h2>
+          <div className="flex flex-col sm:flex-row items-center justify-between w-full pt-8 text-xs text-white/40 gap-4">
+            <p>© {new Date().getFullYear()} HYLY Craftsmanship & Interior Solutions. All rights reserved.</p>
+            <p className="font-mono text-[11px]">Architectural Materiality & Precision Joinery</p>
           </div>
         </div>
       </Container>

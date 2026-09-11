@@ -6,47 +6,32 @@ export interface NavLink {
 
 export const headerNavLinks: NavLink[] = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Services", href: "/services" },
+  { label: "Products", href: "/products" },
+  { label: "Collections", href: "/collections" },
   { label: "Projects", href: "/projects" },
+  { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
 
 export const footerNavigation = {
-  disciplines: [
-    { label: "Veneers", href: "/services#veneers" },
-    { label: "Decorative Materials", href: "/services#decorative-materials" },
-    { label: "Hardware Solutions", href: "/services#hardware-solutions" },
-    { label: "Plywood & Boards", href: "/services#plywood-boards" },
-    { label: "Home Applications", href: "/services#home-applications" },
-    { label: "Custom Craftsmanship", href: "/services#custom-craftsmanship" },
-  ],
-  company: [
+  about: [
     { label: "Our Story", href: "/about" },
-    { label: "Design Philosophy", href: "/about#philosophy" },
-    { label: "Technical Standards", href: "/about#standards" },
-    { label: "Selected Projects", href: "/projects" },
-    { label: "Design Studios", href: "/contact#studios" },
-    { label: "Architect Inquiry", href: "/contact" },
+    { label: "Experience Centres", href: "/contact#studios" },
+    { label: "Sustainability", href: "/about#sustainability" },
+    { label: "Materials Archive", href: "/products" },
+    { label: "Contact Us", href: "/contact" },
   ],
-  portfolio: [
-    { label: "Residential Estates", href: "/projects?category=residential" },
-    { label: "Commercial Headquarters", href: "/projects?category=commercial" },
-    { label: "Bespoke Kitchens", href: "/projects?category=kitchens" },
-    { label: "Walk-In Dressing Suites", href: "/projects?category=wardrobes" },
-    { label: "Decorative & Acoustic Reliefs", href: "/projects?category=decorative-works" },
-  ],
-  legal: [
-    { label: "FSC® Forest Stewardship", href: "/about" },
-    { label: "Material Safety Data (E0)", href: "/about" },
-    { label: "Architectural Specifier Portal", href: "/contact" },
+  customerService: [
+    { label: "Consultation & Sampling", href: "/contact" },
+    { label: "Architectural Specification", href: "/contact" },
+    { label: "Delivery & Installation", href: "/about" },
+    { label: "Terms of Service", href: "#" },
     { label: "Privacy Policy", href: "#" },
-    { label: "Terms of Specification", href: "#" },
   ],
   socials: [
-    { name: "Instagram", href: "https://instagram.com", handle: "@hyly.luxury" },
-    { name: "LinkedIn", href: "https://linkedin.com", handle: "HYLY Craftsmanship" },
-    { name: "Pinterest", href: "https://pinterest.com", handle: "HYLY Material Archive" },
-    { name: "ArchDaily", href: "https://archdaily.com", handle: "HYLY Architectural Library" },
+    { name: "Instagram", href: "https://instagram.com" },
+    { name: "LinkedIn", href: "https://linkedin.com" },
+    { name: "Facebook", href: "https://facebook.com" },
+    { name: "Pinterest", href: "https://pinterest.com" },
   ],
 };

@@ -3,8 +3,8 @@
 :root {
   --bg-main: #F7F5F2;
   --bg-card: #FFFFFF;
-  --bg-card-dark: #171717;
-  --text-main: #171717;
+  --bg-card-dark: #111111;
+  --text-main: #111111;
   --text-muted: #6B6B6B;
   --text-subtle: #9C9C9C;
   --accent-walnut: #8B6A4D;
@@ -34,56 +34,88 @@ body {
   overflow-x: hidden;
 }
 
-/* Luxury Editorial Headings */
-h1, h2, h3, .font-serif-editorial {
-  font-family: var(--font-cormorant, Georgia, serif);
-  letter-spacing: -0.02em;
+/* Poliform Modern Swiss Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-inter, -apple-system, BlinkMacSystemFont, sans-serif);
+  letter-spacing: -0.025em;
+  font-weight: 600;
 }
 
-/* Pill & Card Utilities matching Velmora references */
-.pill-btn-dark {
-  background-color: #171717;
-  color: #FFFFFF;
-  border-radius: 9999px;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.pill-btn-dark:hover {
-  background-color: #333333;
-  transform: translateY(-1px);
-  box-shadow: 0 10px 25px -5px rgba(23, 23, 23, 0.2);
-}
-
-.pill-btn-outline {
-  background-color: transparent;
-  color: #171717;
-  border: 1px solid #171717;
-  border-radius: 9999px;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.pill-btn-outline:hover {
-  background-color: #171717;
-  color: #FFFFFF;
-}
-
-.velmora-card {
+/* Poliform Card Styles */
+.poliform-card {
   border-radius: 28px;
   overflow: hidden;
   background-color: #FFFFFF;
   border: 1px solid var(--border-light);
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.velmora-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.07);
+.poliform-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.08);
 }
 
-/* Minimal Custom Scrollbar */
+/* Circular Arrow Action Button */
+.btn-circle-arrow {
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  background-color: #111111;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
+}
+
+.btn-circle-arrow:hover {
+  background-color: #8B6A4D;
+  transform: scale(1.06);
+}
+
+/* Pill Button Styles */
+.pill-btn-dark {
+  background-color: #111111;
+  color: #FFFFFF;
+  border-radius: 9999px;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pill-btn-dark:hover {
+  background-color: #262626;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px -5px rgba(17, 17, 17, 0.2);
+}
+
+.pill-btn-outline {
+  background-color: transparent;
+  color: #111111;
+  border: 1px solid #111111;
+  border-radius: 9999px;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pill-btn-outline:hover {
+  background-color: #111111;
+  color: #FFFFFF;
+}
+
+/* Horizontal Swipe Hide Scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Custom Minimal Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track {
@@ -97,16 +129,4 @@ h1, h2, h3, .font-serif-editorial {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #8B6A4D;
-}
-
-/* Reduced Motion */
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
 }

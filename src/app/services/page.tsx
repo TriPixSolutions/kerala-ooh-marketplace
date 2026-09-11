@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { Container } from "@/components/shared/Container";
 import { Button } from "@/components/shared/Button";
-import { CTABanner } from "@/components/shared/CTA";
+import { PoliformCTA } from "@/components/home/PoliformCTA";
 import { servicesData } from "@/lib/data/services";
 import { SampleRequestModal } from "@/components/shared/SampleRequestModal";
 import { CheckCircle2, ArrowUpRight } from "lucide-react";
@@ -19,19 +19,18 @@ export default function ServicesPage() {
   };
 
   return (
-    <div className="pt-36 sm:pt-44 md:pt-48 bg-[#F7F5F2]">
+    <div className="pt-24 sm:pt-28 bg-[#F7F5F2]">
       {/* Header */}
-      <section className="pb-16 sm:pb-24 border-b border-[#E5E5E5]">
+      <section className="pb-12 sm:pb-16 border-b border-[#E5E5E5]">
         <Container size="wide">
-          <div className="max-w-4xl mx-auto text-center">
-            <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#8B6A4D] mb-4 block">
+          <div className="max-w-4xl mx-auto space-y-4">
+            <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#8B6A4D] block">
               Architectural Disciplines
             </span>
-            <h1 className="font-serif-editorial text-4xl sm:text-6xl md:text-7xl lg:text-[76px] font-normal leading-[1.08] text-[#171717] tracking-tight mb-8">
-              Material Mastery. <br />
-              <span className="italic font-light">Engineered Execution.</span>
+            <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-[#111111]">
+              Material Mastery & Engineered Execution
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-[#6B6B6B] leading-relaxed max-w-2xl mx-auto mb-10">
+            <p className="text-sm sm:text-base md:text-lg text-[#6B6B6B] leading-relaxed max-w-2xl font-normal">
               Explore HYLY’s six specialized disciplines spanning rare botanical veneers, acoustic panels, concealed hardware, calibrated cores, and bespoke living millwork.
             </p>
 
@@ -189,11 +188,8 @@ export default function ServicesPage() {
         })}
       </div>
 
-      {/* CTA */}
-      <CTABanner
-        title="Specify HYLY Materials for Your Commission"
-        subtitle="Our technical consultants assist with CAD joinery details, sample flitch reservations, and acoustic testing reports."
-      />
+      {/* Poliform CTA Section */}
+      <PoliformCTA />
 
       {/* Sample Request Modal */}
       <SampleRequestModal
