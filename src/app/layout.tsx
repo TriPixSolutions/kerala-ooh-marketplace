@@ -3,7 +3,6 @@ import { Inter, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { VeneerRevealLoader } from "@/components/shared/VeneerRevealLoader";
 import { companyData } from "@/lib/data/company";
 
 const inter = Inter({
@@ -143,7 +142,6 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen flex flex-col bg-[#F7F5F2] text-[#171717] antialiased selection:bg-[#8B6A4D]/20 selection:text-[#171717]">
-        <VeneerRevealLoader />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

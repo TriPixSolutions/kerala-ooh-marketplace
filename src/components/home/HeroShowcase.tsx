@@ -5,173 +5,252 @@ import Image from "next/image";
 import { Button } from "@/components/shared/Button";
 import { Container } from "@/components/shared/Container";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ChevronDown, Sparkles } from "lucide-react";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export function HeroShowcase() {
-  const headlineRef = useRef<HTMLHeadingElement>(null);
-  const subRef = useRef<HTMLParagraphElement>(null);
-  const buttonsRef = useRef<HTMLDivElement>(null);
-  const imagesRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const pinRef = useRef<HTMLDivElement>(null);
+  const veneerCoverRef = useRef<HTMLDivElement>(null);
+  const interiorImageRef = useRef<HTMLDivElement>(null);
+  const interiorVignetteRef = useRef<HTMLDivElement>(null);
+  const contentOverlayRef = useRef<HTMLDivElement>(null);
+  const scrollPromptRef = useRef<HTMLDivElement>(null);
+  const specimenTagRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+    if (typeof window === "undefined") return;
 
+    const ctx = gsap.context(() => {
+      const isMobile = window.innerWidth < 768;
+      // Tailored scroll distance: shorter on mobile (650px) for snappy control, 850px on desktop
+      const scrollDistance = isMobile ? 650 : 850;
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: `+=${scrollDistance}`,
+          pin: pinRef.current,
+          scrub: isMobile ? 0.4 : 0.7,
+          anticipatePin: 1,
+        },
+      });
+
+      // 1. Swatch cover smoothly slides upward like lifting a luxury veneer catalog sample
+      tl.to(
+        veneerCoverRef.current,
+        {
+          yPercent: -105,
+          ease: "power2.inOut",
+        },
+        0
+      );
+
+      // 2. Specimen tag & prompt fade out quickly as scroll begins
+      tl.to(
+        [specimenTagRef.current, scrollPromptRef.current],
+        {
+          opacity: 0,
+          y: -20,
+          ease: "power1.out",
+        },
+        0
+      );
+
+      // 3. Interior visual transitions from slightly muted/tinted to full crystalline brilliance
       tl.fromTo(
-        headlineRef.current,
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 1.1 }
-      )
-        .fromTo(
-          subRef.current,
-          { opacity: 0, y: 20 },
-          { opacity: 1, y: 0, duration: 0.8 },
-          "-=0.7"
-        )
-        .fromTo(
-          buttonsRef.current,
-          { opacity: 0, y: 15 },
-          { opacity: 1, y: 0, duration: 0.6 },
-          "-=0.5"
-        )
-        .fromTo(
-          imagesRef.current?.children ? Array.from(imagesRef.current.children) : [],
-          { opacity: 0, y: 40, scale: 0.98 },
-          { opacity: 1, y: 0, scale: 1, duration: 1, stagger: 0.15 },
-          "-=0.5"
-        );
-    });
+        interiorImageRef.current,
+        { scale: 1.06 },
+        {
+          scale: 1,
+          ease: "power2.out",
+        },
+        0
+      );
+
+      // 4. Subtle dark gradient overlay fades in gently to ensure text contrast once revealed
+      tl.fromTo(
+        interiorVignetteRef.current,
+        { opacity: 0.35 },
+        {
+          opacity: 0.75,
+          ease: "power1.inOut",
+        },
+        0.2
+      );
+
+      // 5. Editorial headline, subtext, and CTA buttons fade in progressively as the interior is uncovered
+      tl.fromTo(
+        contentOverlayRef.current,
+        {
+          opacity: 0,
+          y: 40,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          ease: "power2.out",
+        },
+        0.3
+      );
+    }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
+  const handlePromptClick = () => {
+    if (typeof window !== "undefined") {
+      window.scrollBy({ top: 650, behavior: "smooth" });
+    }
+  };
+
   return (
-    <section className="pt-36 sm:pt-44 md:pt-48 pb-20 sm:pb-28 bg-[#F7F5F2] overflow-hidden">
-      <Container size="wide">
-        {/* Editorial Text Center */}
-        <div className="max-w-4xl mx-auto text-center mb-16 sm:mb-20">
-          <h1
-            ref={headlineRef}
-            className="font-serif-editorial text-4xl sm:text-6xl md:text-7xl lg:text-[82px] font-normal leading-[1.08] text-[#171717] tracking-[-0.03em] mb-8"
+    <section
+      ref={sectionRef}
+      className="relative bg-[#171717] w-full text-white"
+    >
+      {/* Sticky Pinned Viewport Container */}
+      <div
+        ref={pinRef}
+        className="relative w-full h-screen min-h-[640px] max-h-[1080px] overflow-hidden flex flex-col justify-between"
+      >
+        {/* ========================================================= */}
+        {/* BASE LAYER: The Finished Luxury Interior (Sitting Behind) */}
+        {/* ========================================================= */}
+        <div className="absolute inset-0 z-0 bg-[#171717]">
+          <div ref={interiorImageRef} className="relative w-full h-full">
+            <Image
+              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=85&w=2000&auto=format&fit=crop"
+              alt="HYLY Architectural Living Space with Custom American Walnut Paneling"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-center"
+            />
+          </div>
+
+          {/* Dynamic Contrast Vignette */}
+          <div
+            ref={interiorVignetteRef}
+            className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/60 pointer-events-none"
+          />
+
+          {/* Initial Peek Label on the exposed bottom 44% */}
+          <div className="absolute bottom-6 left-6 right-6 z-10 flex items-center justify-between text-[11px] font-mono tracking-widest text-[#D6D3CD]/80 uppercase pointer-events-none">
+            <span className="flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#8B6A4D] animate-ping" />
+              Completed Living Residence
+            </span>
+            <span className="hidden sm:inline">Crafted by HYLY Wood Lab</span>
+          </div>
+        </div>
+
+        {/* ========================================================= */}
+        {/* OVERLYING LAYER: Premium Veneer Swatch Cover (Top 56%)   */}
+        {/* ========================================================= */}
+        <div
+          ref={veneerCoverRef}
+          className="absolute top-0 left-0 right-0 h-[56%] sm:h-[58%] z-20 bg-[#171717] shadow-[0_25px_60px_rgba(0,0,0,0.7)] border-b-2 border-[#8B6A4D]/60 overflow-hidden flex flex-col justify-between p-6 sm:p-10"
+        >
+          {/* Authentic High-Resolution Quarter-Cut Wood Veneer Texture */}
+          <div
+            className="absolute inset-0 bg-cover bg-center opacity-85"
+            style={{
+              backgroundImage: `url('https://images.unsplash.com/photo-1546484475-7f7bd55792da?q=85&w=1600&auto=format&fit=crop')`,
+              filter: "contrast(130%) brightness(85%)",
+            }}
+          />
+          {/* Subtle tactile grain bevel / sheen overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/60" />
+
+          {/* Top Swatch Presentation Header */}
+          <div
+            ref={specimenTagRef}
+            className="relative z-10 flex items-center justify-between w-full max-w-6xl mx-auto pt-16 sm:pt-20"
           >
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-[#8B6A4D]/50 text-[10px] sm:text-xs font-mono uppercase tracking-widest text-[#D4AF37]">
+              <Sparkles className="w-3 h-3 text-[#D4AF37]" />
+              HYLY Material Specimen // Archive 01
+            </div>
+
+            <span className="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-[#D6D3CD]/90 hidden xs:inline">
+              Quarter-Cut American Walnut
+            </span>
+          </div>
+
+          {/* Center Material Identity Label (Like a luxury sample binder) */}
+          <div className="relative z-10 text-center my-auto max-w-2xl mx-auto px-4">
+            <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.25em] text-[#D4AF37]/90 block mb-2">
+              Raw Botanical Provenance
+            </span>
+            <h2 className="font-serif-editorial text-2xl sm:text-4xl md:text-5xl italic font-normal text-white tracking-tight drop-shadow-md">
+              Natural Timber Veneer
+            </h2>
+            <p className="text-xs sm:text-sm font-light text-[#E5E5E5]/80 max-w-md mx-auto mt-2 hidden sm:block">
+              Consecutive flitch matching, zero-gap press tolerances, and sustainably forested hardwood.
+            </p>
+          </div>
+
+          {/* Bottom Lip: Interactive Scroll Prompt Tag */}
+          <div
+            ref={scrollPromptRef}
+            onClick={handlePromptClick}
+            className="relative z-10 flex items-center justify-center w-full pb-1 cursor-pointer group"
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/80 backdrop-blur-md border border-white/20 text-[11px] font-mono uppercase tracking-widest text-white group-hover:border-[#8B6A4D] group-hover:text-[#D4AF37] transition-all shadow-lg">
+              <span>Scroll to open material sample</span>
+              <ChevronDown className="w-3.5 h-3.5 animate-bounce text-[#8B6A4D]" />
+            </div>
+          </div>
+        </div>
+
+        {/* ========================================================= */}
+        {/* FOREGROUND STORYTELLING: Editorial Headline & Actions     */}
+        {/* ========================================================= */}
+        <div
+          ref={contentOverlayRef}
+          className="relative z-30 my-auto w-full max-w-5xl mx-auto px-6 sm:px-8 text-center pointer-events-auto"
+        >
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-[10px] sm:text-xs font-mono uppercase tracking-widest text-[#D4AF37] mb-6">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]" />
+            From Raw Grain to Living Sanctuary
+          </div>
+
+          <h1 className="font-serif-editorial text-4xl sm:text-6xl md:text-7xl lg:text-[84px] font-normal leading-[1.08] text-[#F7F5F2] tracking-[-0.03em] mb-6 sm:mb-8 drop-shadow-xl">
             Crafting spaces. <br className="hidden sm:inline" />
-            Elevating <span className="italic font-light">interiors.</span> <br />
+            Elevating <span className="italic font-light text-[#D4AF37]">interiors.</span> <br />
             Through <span className="italic font-light">premium materials.</span>
           </h1>
 
-          <p
-            ref={subRef}
-            className="text-base sm:text-lg md:text-xl font-normal text-[#6B6B6B] leading-relaxed max-w-2xl mx-auto mb-10"
-          >
-            HYLY delivers premium veneers, decorative materials, hardware solutions, and custom craftsmanship for visionary living spaces.
+          <p className="text-sm sm:text-base md:text-xl font-normal text-[#D6D3CD] leading-relaxed max-w-2xl mx-auto mb-8 sm:mb-10 drop-shadow-md">
+            HYLY delivers architectural veneers, tactile decorative surfaces, concealed precision hardware, and bespoke living craftsmanship.
           </p>
 
-          <div
-            ref={buttonsRef}
-            className="flex flex-wrap items-center justify-center gap-4"
-          >
-            <Button href="/services" variant="pill-dark" size="lg">
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <Button
+              href="/services"
+              variant="pill-dark"
+              size="lg"
+              className="!bg-[#8B6A4D] hover:!bg-[#70533a] !text-white shadow-xl"
+            >
               Explore Services
             </Button>
-            <Button href="/projects" variant="pill-outline" size="lg">
+            <Button
+              href="/projects"
+              variant="pill-outline"
+              size="lg"
+              className="!border-white/40 !text-white hover:!bg-white hover:!text-[#171717]"
+            >
               View Projects
             </Button>
           </div>
         </div>
-
-        {/* MOBILE HERO: Single Immersive Architectural Visual (block md:hidden) */}
-        <div className="block md:hidden max-w-lg mx-auto">
-          <div className="relative aspect-[4/5] w-full rounded-[28px] overflow-hidden bg-[#EAE7E1] shadow-[0_20px_40px_rgba(0,0,0,0.08)] group border border-[#E5E5E5]/60">
-            <Image
-              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=85&w=1400&auto=format&fit=crop"
-              alt="HYLY Architectural Living Space Execution"
-              fill
-              priority
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-105"
-            />
-            {/* Cinematic subtle vignette */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
-            
-            {/* Floating Top Pill Badge */}
-            <div className="absolute top-4 left-4 z-10">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/80 backdrop-blur-md text-[10px] font-mono uppercase tracking-widest text-[#171717] shadow-sm border border-white/40">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#8B6A4D] animate-ping" />
-                Featured Residence
-              </span>
-            </div>
-
-            {/* Bottom Storytelling Caption */}
-            <div className="absolute bottom-5 left-5 right-5 z-10 text-white">
-              <span className="text-[10px] font-mono tracking-widest uppercase text-[#D6D3CD]/90 block mb-1">
-                Bespoke Joinery & Quarter-Cut Walnut
-              </span>
-              <p className="font-serif-editorial text-xl text-white font-normal italic leading-snug">
-                “Where architectural discipline meets hand-selected timber.”
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* DESKTOP SHOWCASE: 3 Image Layout (hidden md:grid) */}
-        <div
-          ref={imagesRef}
-          className="hidden md:grid md:grid-cols-12 gap-6 lg:gap-8 items-end max-w-6xl mx-auto"
-        >
-          {/* Left: Material Close-Up */}
-          <div className="md:col-span-3">
-            <div className="relative aspect-[3/4.2] w-full rounded-[28px] overflow-hidden bg-[#EAE7E1] shadow-[0_15px_35px_rgba(0,0,0,0.04)] group">
-              <Image
-                src="https://images.unsplash.com/photo-1546484475-7f7bd55792da?q=85&w=1200&auto=format&fit=crop"
-                alt="HYLY Natural Timber Veneer Specimen"
-                fill
-                priority
-                sizes="25vw"
-                className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute bottom-4 left-4 right-4 text-white text-xs font-mono tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                Natural Veneers
-              </div>
-            </div>
-          </div>
-
-          {/* Center: Monumental Luxury Interior (Tallest) */}
-          <div className="md:col-span-6">
-            <div className="relative aspect-[4/4.8] w-full rounded-[28px] overflow-hidden bg-[#EAE7E1] shadow-[0_20px_45px_rgba(0,0,0,0.06)] group">
-              <Image
-                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=85&w=1600&auto=format&fit=crop"
-                alt="HYLY Architectural Living Space Execution"
-                fill
-                priority
-                sizes="50vw"
-                className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute bottom-5 left-5 right-5 text-white text-xs font-mono tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                Custom Architectural Living
-              </div>
-            </div>
-          </div>
-
-          {/* Right: Hardware Detail */}
-          <div className="md:col-span-3">
-            <div className="relative aspect-[3/4.2] w-full rounded-[28px] overflow-hidden bg-[#EAE7E1] shadow-[0_15px_35px_rgba(0,0,0,0.04)] group">
-              <Image
-                src="https://images.unsplash.com/photo-1513694203232-719a280e022f?q=85&w=1200&auto=format&fit=crop"
-                alt="HYLY Architectural Hardware Detail"
-                fill
-                priority
-                sizes="25vw"
-                className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute bottom-4 left-4 right-4 text-white text-xs font-mono tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                Precision Hardware
-              </div>
-            </div>
-          </div>
-        </div>
-      </Container>
+      </div>
     </section>
   );
 }

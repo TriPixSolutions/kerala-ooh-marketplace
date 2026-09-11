@@ -33,13 +33,16 @@ export function Header() {
     { label: "Contact", href: "/contact" },
   ];
 
+  const isHome = pathname === "/";
+  const useLightText = isHome && !isScrolled;
+
   return (
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-400 ${
           isScrolled
-            ? "bg-[#FFFFFF]/90 backdrop-blur-md border-b border-[#E5E5E5] py-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)]"
-            : "bg-transparent py-6 sm:py-8"
+            ? "bg-[#FFFFFF]/95 backdrop-blur-md border-b border-[#E5E5E5] py-4 shadow-[0_4px_20px_rgba(0,0,0,0.04)]"
+            : "bg-gradient-to-b from-black/60 via-black/20 to-transparent py-5 sm:py-7"
         }`}
       >
         <div className="max-w-[1440px] mx-auto px-6 sm:px-10 md:px-14 lg:px-16 flex items-center justify-between">
@@ -52,7 +55,11 @@ export function Header() {
                   key={link.label}
                   href={link.href}
                   className={`text-sm tracking-normal transition-colors duration-200 ${
-                    isActive
+                    useLightText
+                      ? isActive
+                        ? "text-white font-medium"
+                        : "text-white/80 hover:text-white"
+                      : isActive
                       ? "text-[#171717] font-medium"
                       : "text-[#6B6B6B] hover:text-[#171717]"
                   }`}
@@ -67,7 +74,9 @@ export function Header() {
           <div className="flex justify-center flex-1 md:w-1/3">
             <Link
               href="/"
-              className="font-serif-editorial text-2xl sm:text-3xl lg:text-4xl italic text-[#171717] hover:opacity-85 transition-opacity select-none tracking-tight"
+              className={`font-serif-editorial text-2xl sm:text-3xl lg:text-4xl italic hover:opacity-85 transition-colors select-none tracking-tight ${
+                useLightText ? "text-white" : "text-[#171717]"
+              }`}
             >
               HYLY
             </Link>
@@ -83,7 +92,11 @@ export function Header() {
                     key={link.label}
                     href={link.href}
                     className={`text-sm tracking-normal transition-colors duration-200 ${
-                      isActive
+                      useLightText
+                        ? isActive
+                          ? "text-white font-medium"
+                          : "text-white/80 hover:text-white"
+                        : isActive
                         ? "text-[#171717] font-medium"
                         : "text-[#6B6B6B] hover:text-[#171717]"
                     }`}
@@ -94,7 +107,12 @@ export function Header() {
               })}
             </nav>
 
-            <Button href="/contact" variant="pill-dark" size="sm">
+            <Button
+              href="/contact"
+              variant={useLightText ? "pill-outline" : "pill-dark"}
+              size="sm"
+              className={useLightText ? "!border-white/40 !text-white hover:!bg-white hover:!text-[#171717]" : ""}
+            >
               Get Consultation
             </Button>
           </div>
@@ -103,16 +121,20 @@ export function Header() {
           <div className="flex items-center gap-3 md:hidden">
             <Button
               href="/contact"
-              variant="pill-dark"
+              variant={useLightText ? "pill-outline" : "pill-dark"}
               size="sm"
-              className="text-[11px] px-3.5 py-1.5"
+              className={`text-[11px] px-3.5 py-1.5 ${
+                useLightText ? "!border-white/40 !text-white" : ""
+              }`}
             >
               Consult
             </Button>
             <button
               onClick={() => setMobileMenuOpen(true)}
               aria-label="Open mobile navigation"
-              className="p-2 text-[#171717] hover:opacity-70 focus:outline-none cursor-pointer"
+              className={`p-2 transition-colors focus:outline-none cursor-pointer ${
+                useLightText ? "text-white hover:opacity-70" : "text-[#171717] hover:opacity-70"
+              }`}
             >
               <Menu className="w-6 h-6" />
             </button>
