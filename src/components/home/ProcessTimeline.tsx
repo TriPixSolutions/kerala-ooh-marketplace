@@ -1,97 +1,85 @@
+"use client";
+
 import React from "react";
 import { Container } from "@/components/shared/Container";
-import { SectionHeading } from "@/components/shared/SectionHeading";
 
 export function ProcessTimeline() {
   const steps = [
     {
       step: "01",
-      title: "Architectural Dialogue",
-      duration: "Week 1",
+      title: "Consultation",
+      duration: "Discovery",
       description:
-        "We review CAD drawings, 3D renderings, and bill of quantities with your architectural team. We define moisture parameters, ceiling heights, structural weight loads, and aesthetic intent.",
-      deliverable: "Material Specification Matrix & Initial Feasibility Assessment",
+        "Initial schematic alignment with architects, interior designers, or private clients to establish spatial parameters, timber species preferences, and functional performance criteria.",
     },
     {
       step: "02",
-      title: "Tactile Curation & Swatches",
-      duration: "Weeks 2 – 3",
+      title: "Material Selection",
+      duration: "Curation",
       description:
-        "Our curators pull consecutive veneer flitches, metal profiles, and calibrated cores from our archive. We dispatch 1:1 physical sample boxes directly to your studio for client sign-off.",
-      deliverable: "Physical Swatch Box & Sequence-Numbered Flitch Booking",
+        "Curating consecutive veneer flitches, acoustic battens, and hardware finishes directly from our physical archive. 1:1 tactile swatches dispatched for approval.",
     },
     {
       step: "03",
-      title: "Precision CNC Fabrication",
-      duration: "Weeks 4 – 6",
+      title: "Design Planning",
+      duration: "Engineering",
       description:
-        "Selected substrates and veneers are calibrated on multi-axis German CNC machines to ±0.05 mm tolerances. Edge details, flush pivot pockets, and flutes are machined with surgical accuracy.",
-      deliverable: "Dimensional Tolerance Verification & Pre-Assembly Dry Run",
+        "Detailed joinery shop drawings, grain mapping, 5-axis CNC programming, and stress testing for environmental equilibrium and seamless reveals.",
     },
     {
       step: "04",
-      title: "Master Hand-Finishing",
-      duration: "Weeks 6 – 7",
+      title: "Execution",
+      duration: "Atelier Craft",
       description:
-        "Every panel, handle, and cabinet surface is hand-sanded across progressive grit stages. Multiple coats of organic penetrating oils or reactive smoked treatments are hand-rubbed by master carpenters.",
-      deliverable: "Micro-Porous Matte Oil or Custom Patina Finish",
+        "Precision multi-axis milling, vacuum-membrane thermoforming, and multi-stage artisanal hand-rubbed organic oil finishing by master craftspeople.",
     },
     {
       step: "05",
-      title: "White-Glove Site Integration",
-      duration: "Installation",
+      title: "Completion",
+      duration: "Integration",
       description:
-        "Pre-fitted components are delivered in climate-controlled packaging. Our technical supervisors assist your installation contractors on-site to ensure zero-sag reveals and silent operation.",
-      deliverable: "25-Year Warranty Certificate & Care Guild Manual",
+        "White-glove on-site technical coordination, flawless assembly inspection, reveal calibration, and comprehensive lifetime warranty certification.",
     },
   ];
 
   return (
-    <section className="py-24 sm:py-32 bg-[#0c0d11] border-t border-white/[0.08]">
-      <Container>
-        <SectionHeading
-          eyebrow="The Architectural Journey"
-          title={
-            <>
-              From Blueprint to{" "}
-              <span className="italic font-serif text-[#c5a880]">Living</span> Reality
-            </>
-          }
-          subtitle="Our five-stage collaborative methodology guarantees zero surprises, pristine grain continuity, and effortless installation on site."
-        />
+    <section className="py-24 sm:py-32 md:py-36 bg-[#F7F5F2] border-t border-[#E5E5E5]">
+      <Container size="wide">
+        <div className="max-w-3xl mx-auto text-center mb-16 sm:mb-24">
+          <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#8B6A4D] mb-3 block">
+            The Journey
+          </span>
+          <h2 className="font-serif-editorial text-4xl sm:text-5xl lg:text-6xl font-normal text-[#171717] tracking-tight mb-6">
+            Our Working Process
+          </h2>
+          <p className="text-base text-[#6B6B6B] max-w-lg mx-auto">
+            A methodical five-stage methodology engineered to eliminate ambiguity and deliver flawless architectural materiality.
+          </p>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-6 relative">
-          {steps.map((item, idx) => (
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-6 max-w-6xl mx-auto">
+          {steps.map((item) => (
             <div
               key={item.step}
-              className="relative p-6 bg-[#121418] border border-white/[0.08] hover:border-[#c5a880]/50 transition-all flex flex-col justify-between"
+              className="relative p-8 rounded-[28px] bg-[#FFFFFF] border border-[#E5E5E5] flex flex-col justify-between shadow-[0_10px_25px_rgba(0,0,0,0.02)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.06)]"
             >
               <div>
-                <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/[0.06]">
-                  <span className="text-2xl font-light font-mono text-[#c5a880]">
+                <div className="flex items-center justify-between mb-6 pb-4 border-b border-[#E5E5E5]">
+                  <span className="font-serif-editorial text-3xl font-light text-[#8B6A4D]">
                     {item.step}
                   </span>
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-[#9ea3b0] bg-white/[0.04] px-2 py-0.5">
+                  <span className="text-[11px] font-mono uppercase tracking-wider text-[#6B6B6B] bg-[#F7F5F2] px-2.5 py-1 rounded-full border border-[#E5E5E5]">
                     {item.duration}
                   </span>
                 </div>
 
-                <h3 className="text-lg font-light text-[#f6f4f0] mb-3">
+                <h3 className="font-serif-editorial text-2xl font-normal text-[#171717] mb-3">
                   {item.title}
                 </h3>
 
-                <p className="text-xs font-light text-[#9ea3b0] leading-relaxed mb-6">
+                <p className="text-xs sm:text-sm font-normal text-[#6B6B6B] leading-relaxed">
                   {item.description}
                 </p>
-              </div>
-
-              <div className="pt-4 border-t border-white/[0.06]">
-                <span className="block text-[9px] font-mono uppercase tracking-wider text-[#c5a880] mb-1">
-                  Phase Milestone:
-                </span>
-                <span className="text-[11px] text-[#e4d5be] block leading-snug">
-                  {item.deliverable}
-                </span>
               </div>
             </div>
           ))}

@@ -2,8 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ProjectItem } from "@/types";
-import { ArrowUpRight, MapPin } from "lucide-react";
-import { Badge } from "@/components/shared/Badge";
+import { ArrowUpRight } from "lucide-react";
 
 interface ProjectCardProps {
   project: ProjectItem;
@@ -11,21 +10,21 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <article className="group relative flex flex-col bg-[#0e1014] border border-white/[0.08] hover:border-[#c5a880]/50 transition-all duration-500 overflow-hidden">
+    <article className="group relative flex flex-col bg-[#FFFFFF] rounded-[28px] border border-[#E5E5E5] overflow-hidden transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.08)]">
       {/* Cover Image */}
-      <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#16191f]">
+      <div className="relative aspect-[16/11] w-full overflow-hidden bg-[#EAE7E1]">
         <Image
           src={project.coverImage}
           alt={project.title}
           fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
-          className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105 brightness-[0.75] group-hover:brightness-95"
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0e1014] via-black/20 to-transparent" />
-
         <div className="absolute top-4 left-4 flex items-center gap-2">
-          <Badge variant="dark">{project.categoryLabel}</Badge>
-          <span className="text-[11px] font-mono text-[#e4d5be] bg-black/60 px-2.5 py-0.5 backdrop-blur-sm border border-white/[0.1]">
+          <span className="text-xs font-normal text-[#171717] bg-white/90 backdrop-blur-md px-3.5 py-1 rounded-full border border-black/5">
+            {project.categoryLabel}
+          </span>
+          <span className="text-xs font-mono text-[#6B6B6B] bg-white/80 backdrop-blur-md px-3 py-1 rounded-full border border-black/5">
             {project.year}
           </span>
         </div>
@@ -34,28 +33,27 @@ export function ProjectCard({ project }: ProjectCardProps) {
       {/* Details */}
       <div className="p-6 sm:p-8 flex-1 flex flex-col justify-between">
         <div>
-          <div className="flex items-center gap-1.5 text-xs text-[#9ea3b0] mb-2 font-mono">
-            <MapPin className="w-3.5 h-3.5 text-[#c5a880]" />
-            <span>{project.location}</span>
+          <div className="text-xs font-mono uppercase tracking-wider text-[#8B6A4D] mb-2">
+            {project.location}
           </div>
 
-          <h3 className="text-2xl sm:text-3xl font-light text-[#f6f4f0] mb-3 group-hover:text-[#c5a880] transition-colors">
+          <h3 className="font-serif-editorial text-2xl sm:text-3xl font-normal text-[#171717] mb-3 group-hover:text-[#8B6A4D] transition-colors">
             {project.title}
           </h3>
 
-          <p className="text-xs sm:text-sm font-light text-[#9ea3b0] leading-relaxed mb-6 line-clamp-2">
+          <p className="text-sm font-normal text-[#6B6B6B] leading-relaxed mb-6 line-clamp-2">
             {project.subtitle}
           </p>
 
-          <div className="pt-4 border-t border-white/[0.06] mb-6">
-            <span className="block text-[10px] font-mono uppercase tracking-wider text-[#9ea3b0] mb-2">
-              Key Materials Specified:
+          <div className="pt-4 border-t border-[#E5E5E5] mb-6">
+            <span className="block text-[11px] font-mono uppercase tracking-wider text-[#9C9C9C] mb-2">
+              Materials Specified:
             </span>
             <div className="flex flex-wrap gap-1.5">
               {project.materialsUsed.slice(0, 3).map((mat) => (
                 <span
                   key={mat.name}
-                  className="text-[11px] bg-white/[0.04] text-[#e4d5be] px-2.5 py-1 border border-white/[0.06]"
+                  className="text-xs bg-[#F7F5F2] text-[#171717] px-3 py-1 rounded-full border border-[#E5E5E5]"
                 >
                   {mat.name}
                 </span>
@@ -65,10 +63,12 @@ export function ProjectCard({ project }: ProjectCardProps) {
         </div>
 
         <div className="flex items-center justify-between pt-2">
-          <span className="text-xs font-mono uppercase tracking-[0.14em] text-[#c5a880] group-hover:underline">
-            View Case Study
+          <span className="text-xs font-medium uppercase tracking-[0.14em] text-[#171717] group-hover:text-[#8B6A4D] transition-colors">
+            View Project
           </span>
-          <ArrowUpRight className="w-4 h-4 text-[#c5a880] transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+          <div className="w-8 h-8 rounded-full bg-[#F7F5F2] flex items-center justify-center group-hover:bg-[#171717] group-hover:text-white transition-all">
+            <ArrowUpRight className="w-4 h-4" />
+          </div>
         </div>
       </div>
 

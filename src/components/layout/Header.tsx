@@ -3,8 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, Sparkles } from "lucide-react";
-import { headerNavLinks } from "@/lib/data/navigation";
+import { Menu } from "lucide-react";
 import { Button } from "@/components/shared/Button";
 import { MobileMenu } from "./MobileMenu";
 import { SampleRequestModal } from "@/components/shared/SampleRequestModal";
@@ -23,80 +22,97 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const leftNavLinks = [
+    { label: "About", href: "/about" },
+    { label: "Services", href: "/services" },
+    { label: "Projects", href: "/projects" },
+  ];
+
+  const rightNavLinks = [
+    { label: "Materials", href: "/services#veneers" },
+    { label: "Contact", href: "/contact" },
+  ];
+
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-400 ${
           isScrolled
-            ? "bg-[#090a0c]/85 backdrop-blur-xl border-b border-white/[0.08] py-3.5 shadow-2xl"
-            : "bg-transparent py-5 sm:py-6"
+            ? "bg-[#FFFFFF]/90 backdrop-blur-md border-b border-[#E5E5E5] py-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)]"
+            : "bg-transparent py-6 sm:py-8"
         }`}
       >
-        <div className="max-w-[1440px] mx-auto px-5 sm:px-8 md:px-12 lg:px-16 flex items-center justify-between">
-          {/* Brand Logo */}
-          <Link href="/" className="group flex flex-col items-start select-none">
-            <span className="text-2xl sm:text-3xl font-light tracking-[0.25em] text-[#f6f4f0] transition-colors group-hover:text-[#c5a880]">
-              HYLY
-            </span>
-            <span className="text-[8px] sm:text-[9px] font-mono tracking-[0.32em] uppercase text-[#c5a880]/80">
-              Craftsmanship & Materials
-            </span>
-          </Link>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8 lg:gap-10">
-            {headerNavLinks.map((link) => {
-              const isActive =
-                link.href === "/"
-                  ? pathname === "/"
-                  : pathname.startsWith(link.href);
-
+        <div className="max-w-[1440px] mx-auto px-6 sm:px-10 md:px-14 lg:px-16 flex items-center justify-between">
+          {/* Desktop Left Nav */}
+          <nav className="hidden md:flex items-center gap-8 lg:gap-10 w-1/3">
+            {leftNavLinks.map((link) => {
+              const isActive = pathname === link.href;
               return (
                 <Link
-                  key={link.href}
+                  key={link.label}
                   href={link.href}
-                  className={`relative text-xs lg:text-[13px] font-medium tracking-[0.14em] uppercase transition-colors duration-300 py-1 ${
+                  className={`text-sm tracking-normal transition-colors duration-200 ${
                     isActive
-                      ? "text-[#c5a880]"
-                      : "text-[#9ea3b0] hover:text-[#f6f4f0]"
+                      ? "text-[#171717] font-medium"
+                      : "text-[#6B6B6B] hover:text-[#171717]"
                   }`}
                 >
                   {link.label}
-                  {isActive && (
-                    <span className="absolute bottom-0 left-0 right-0 h-px bg-[#c5a880] animate-in fade-in" />
-                  )}
                 </Link>
               );
             })}
           </nav>
 
-          {/* Right Action Desk */}
-          <div className="hidden lg:flex items-center gap-4">
-            <button
-              onClick={() => setSampleModalOpen(true)}
-              className="inline-flex items-center gap-2 text-xs font-mono tracking-wider uppercase text-[#9ea3b0] hover:text-[#e4d5be] px-3 py-2 border border-white/[0.1] hover:border-[#c5a880]/40 transition-colors cursor-pointer"
+          {/* Desktop Center Brand Logo (Velmora style serif) */}
+          <div className="flex justify-center flex-1 md:w-1/3">
+            <Link
+              href="/"
+              className="font-serif-editorial text-2xl sm:text-3xl lg:text-4xl italic text-[#171717] hover:opacity-85 transition-opacity select-none tracking-tight"
             >
-              <Sparkles className="w-3.5 h-3.5 text-[#c5a880]" />
-              Sample Kit
-            </button>
-            <Button href="/contact" variant="primary" size="sm" withArrow>
-              Consult Atelier
+              HYLY
+            </Link>
+          </div>
+
+          {/* Desktop Right Nav & Consultation Pill Button */}
+          <div className="hidden md:flex items-center justify-end gap-8 lg:gap-10 w-1/3">
+            <nav className="flex items-center gap-8">
+              {rightNavLinks.map((link) => {
+                const isActive = pathname === link.href;
+                return (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    className={`text-sm tracking-normal transition-colors duration-200 ${
+                      isActive
+                        ? "text-[#171717] font-medium"
+                        : "text-[#6B6B6B] hover:text-[#171717]"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
+            </nav>
+
+            <Button href="/contact" variant="pill-dark" size="sm">
+              Get Consultation
             </Button>
           </div>
 
-          {/* Mobile / Tablet Hamburger Toggle */}
-          <div className="flex items-center gap-3 lg:hidden">
-            <button
-              onClick={() => setSampleModalOpen(true)}
-              className="hidden sm:inline-flex items-center gap-1.5 text-[11px] font-mono tracking-wider uppercase text-[#e4d5be] px-2.5 py-1.5 border border-white/[0.1]"
+          {/* Mobile Toggle */}
+          <div className="flex items-center gap-3 md:hidden">
+            <Button
+              href="/contact"
+              variant="pill-dark"
+              size="sm"
+              className="text-[11px] px-3.5 py-1.5"
             >
-              <Sparkles className="w-3 h-3 text-[#c5a880]" />
-              Samples
-            </button>
+              Consult
+            </Button>
             <button
               onClick={() => setMobileMenuOpen(true)}
-              aria-label="Open navigation menu"
-              className="p-2 text-[#9ea3b0] hover:text-[#f6f4f0] focus:outline-none cursor-pointer"
+              aria-label="Open mobile navigation"
+              className="p-2 text-[#171717] hover:opacity-70 focus:outline-none cursor-pointer"
             >
               <Menu className="w-6 h-6" />
             </button>
@@ -104,14 +120,14 @@ export function Header() {
         </div>
       </header>
 
-      {/* Mobile Drawer */}
+      {/* Fullscreen Mobile Menu */}
       <MobileMenu
         isOpen={mobileMenuOpen}
         onClose={() => setMobileMenuOpen(false)}
         onOpenSampleModal={() => setSampleModalOpen(true)}
       />
 
-      {/* Global Sample Request Modal */}
+      {/* Sample Request Modal */}
       <SampleRequestModal
         isOpen={sampleModalOpen}
         onClose={() => setSampleModalOpen(false)}

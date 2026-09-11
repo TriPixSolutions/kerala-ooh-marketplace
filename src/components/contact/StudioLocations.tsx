@@ -8,43 +8,43 @@ export function StudioLocations() {
       {companyData.studios.map((studio) => (
         <div
           key={studio.city}
-          className="p-8 bg-[#111317] border border-white/[0.08] hover:border-[#c5a880]/40 transition-all flex flex-col justify-between"
+          className="p-8 bg-white rounded-[28px] border border-[#E5E5E5] flex flex-col justify-between shadow-[0_10px_25px_rgba(0,0,0,0.02)] transition-all hover:-translate-y-1 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)]"
         >
           <div>
             <div className="flex items-center justify-between mb-4">
-              <span className="text-xs font-mono uppercase tracking-widest text-[#c5a880]">
+              <span className="text-xs font-mono uppercase tracking-widest text-[#8B6A4D]">
                 {studio.type}
               </span>
-              <MapPin className="w-4 h-4 text-[#c5a880]" />
+              <MapPin className="w-4 h-4 text-[#8B6A4D]" />
             </div>
 
-            <h4 className="text-2xl font-light text-[#f6f4f0] mb-3">
+            <h3 className="font-serif-editorial text-2xl sm:text-3xl font-normal text-[#171717] mb-3">
               {studio.city}
-            </h4>
+            </h3>
 
-            <p className="text-sm font-light text-[#9ea3b0] leading-relaxed mb-6">
+            <p className="text-sm text-[#6B6B6B] leading-relaxed mb-6">
               {studio.address}, {studio.area}
             </p>
 
-            <div className="space-y-2.5 pt-4 border-t border-white/[0.06] text-xs font-mono text-[#9ea3b0]">
+            <div className="space-y-2.5 pt-4 border-t border-[#E5E5E5] text-xs font-mono text-[#6B6B6B]">
               <div className="flex items-center gap-2">
-                <Clock className="w-3.5 h-3.5 text-[#c5a880]" />
+                <Clock className="w-3.5 h-3.5 text-[#8B6A4D]" />
                 <span>{studio.hours}</span>
               </div>
               <div className="flex items-center gap-2">
-                <Phone className="w-3.5 h-3.5 text-[#c5a880]" />
+                <Phone className="w-3.5 h-3.5 text-[#8B6A4D]" />
                 <a
                   href={`tel:${studio.phone}`}
-                  className="hover:text-[#f6f4f0] transition-colors"
+                  className="hover:text-[#171717] transition-colors"
                 >
                   {studio.phone}
                 </a>
               </div>
               <div className="flex items-center gap-2">
-                <Mail className="w-3.5 h-3.5 text-[#c5a880]" />
+                <Mail className="w-3.5 h-3.5 text-[#8B6A4D]" />
                 <a
                   href={`mailto:${studio.email}`}
-                  className="hover:text-[#f6f4f0] transition-colors"
+                  className="hover:text-[#171717] transition-colors"
                 >
                   {studio.email}
                 </a>
@@ -52,12 +52,12 @@ export function StudioLocations() {
             </div>
           </div>
 
-          <div className="pt-6 mt-6 border-t border-white/[0.06]">
+          <div className="pt-6 mt-6 border-t border-[#E5E5E5]">
             <a
               href={studio.mapUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-[#c5a880] hover:underline"
+              className="inline-flex items-center gap-1.5 text-xs font-medium uppercase tracking-wider text-[#171717] hover:text-[#8B6A4D] transition-colors"
             >
               Open Studio Location Map <ArrowUpRight className="w-3.5 h-3.5" />
             </a>

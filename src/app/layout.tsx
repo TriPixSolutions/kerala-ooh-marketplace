@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -11,8 +11,16 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  display: "swap",
+  variable: "--font-cormorant",
+});
+
 export const viewport: Viewport = {
-  themeColor: "#090a0c",
+  themeColor: "#F7F5F2",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -21,22 +29,20 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://hyly.luxury"),
   title: {
-    default: "HYLY | Luxury Architectural Craftsmanship & Interior Materials",
-    template: "%s | HYLY Craftsmanship",
+    default: "HYLY | Luxury Craftsmanship & Interior Material Solutions",
+    template: "%s | HYLY Luxury",
   },
   description:
-    "HYLY is an architectural material atelier and bespoke craftsmanship company specializing in exotic veneers, acoustic decorative surfaces, concealed precision hardware, calibrated marine plywood, and bespoke living systems.",
+    "HYLY delivers architectural veneers, decorative surfaces, precision hardware, and bespoke living craftsmanship for luxury residences and commercial spaces.",
   keywords: [
-    "architectural veneers",
-    "luxury interior materials",
-    "smoked oak veneer",
-    "acoustic fluted panels",
-    "concealed hinges",
-    "calibrated marine plywood",
-    "bespoke walk in wardrobes",
-    "luxury modular kitchens",
-    "custom craftsmanship",
-    "HYLY interior solutions",
+    "HYLY interior materials",
+    "luxury veneers",
+    "architectural hardware",
+    "acoustic panels",
+    "bespoke craftsmanship",
+    "luxury interior design",
+    "custom cabinetry",
+    "interior material supply",
   ],
   authors: [{ name: "HYLY Craftsmanship & Interior Solutions" }],
   creator: "HYLY",
@@ -46,9 +52,9 @@ export const metadata: Metadata = {
     telephone: true,
   },
   openGraph: {
-    title: "HYLY | Luxury Architectural Craftsmanship & Interior Materials",
+    title: "HYLY | Luxury Craftsmanship & Interior Material Solutions",
     description:
-      "Curators of rare wood veneers, tactile acoustic surfaces, concealed precision hardware, and bespoke living systems for visionary architecture.",
+      "Crafting spaces. Elevating interiors. Through premium materials, architectural veneers, and bespoke craftsmanship.",
     url: "https://hyly.luxury",
     siteName: "HYLY",
     images: [
@@ -56,7 +62,7 @@ export const metadata: Metadata = {
         url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=85&w=1200&auto=format&fit=crop",
         width: 1200,
         height: 630,
-        alt: "HYLY Architectural Craftsmanship & Interior Materials",
+        alt: "HYLY Luxury Interior Craftsmanship",
       },
     ],
     locale: "en_US",
@@ -64,9 +70,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "HYLY | Architectural Craftsmanship & Interior Materials",
+    title: "HYLY | Luxury Craftsmanship & Interior Materials",
     description:
-      "The Poetry of Wood, The Precision of Architecture. Explore our material archive and bespoke joinery commissions.",
+      "Crafting spaces. Elevating interiors. Through premium materials.",
     images: [
       "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=85&w=1200&auto=format&fit=crop",
     ],
@@ -74,13 +80,6 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
   alternates: {
     canonical: "https://hyly.luxury",
@@ -113,10 +112,6 @@ export default function RootLayout({
           postalCode: "682036",
           addressCountry: "IN",
         },
-        sameAs: [
-          "https://instagram.com/hyly.luxury",
-          "https://linkedin.com/company/hyly",
-        ],
       },
       {
         "@type": "HomeAndConstructionBusiness",
@@ -139,14 +134,14 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={`${inter.variable} ${cormorant.variable}`}>
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-screen flex flex-col bg-[#090a0c] text-[#f6f4f0] antialiased">
+      <body className="min-h-screen flex flex-col bg-[#F7F5F2] text-[#171717] antialiased selection:bg-[#8B6A4D]/20 selection:text-[#171717]">
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

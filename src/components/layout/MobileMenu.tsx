@@ -1,11 +1,11 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Link from "next/link";
 import { X, ArrowUpRight, Phone, Mail, MessageCircle } from "lucide-react";
-import { headerNavLinks } from "@/lib/data/navigation";
 import { companyData } from "@/lib/data/company";
 import { Button } from "@/components/shared/Button";
+import gsap from "gsap";
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -18,51 +18,73 @@ export function MobileMenu({
   onClose,
   onOpenSampleModal,
 }: MobileMenuProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const linksRef = useRef<HTMLUListElement>(null);
+
+  useEffect(() => {
+    if (isOpen && containerRef.current && linksRef.current) {
+      gsap.fromTo(
+        containerRef.current,
+        { opacity: 0, y: -20 },
+        { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }
+      );
+      gsap.fromTo(
+        linksRef.current.children,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.5, stagger: 0.08, ease: "power2.out" }
+      );
+    }
+  }, [isOpen]);
+
   if (!isOpen) return null;
+
+  const navLinks = [
+    { label: "Home", href: "/" },
+    { label: "About HYLY", href: "/about" },
+    { label: "Services & Disciplines", href: "/services" },
+    { label: "Selected Projects", href: "/projects" },
+    { label: "Tactile Materials", href: "/services#veneers" },
+    { label: "Contact & Studios", href: "/contact" },
+  ];
 
   return (
     <div
+      ref={containerRef}
       role="dialog"
       aria-modal="true"
       aria-label="Navigation Menu"
-      className="fixed inset-0 z-50 bg-[#090a0c]/95 backdrop-blur-2xl flex flex-col justify-between p-6 sm:p-10 animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 bg-[#F7F5F2] flex flex-col justify-between p-6 sm:p-12 overflow-y-auto"
     >
       {/* Top Bar */}
-      <div className="flex items-center justify-between border-b border-white/[0.08] pb-6">
-        <div className="flex flex-col">
-          <span className="text-2xl font-light tracking-[0.25em] text-[#f6f4f0]">
-            HYLY
-          </span>
-          <span className="text-[9px] font-mono tracking-[0.3em] uppercase text-[#c5a880]">
-            Craftsmanship & Materials
-          </span>
-        </div>
+      <div className="flex items-center justify-between border-b border-[#E5E5E5] pb-6">
+        <Link
+          href="/"
+          onClick={onClose}
+          className="font-serif-editorial text-3xl italic text-[#171717]"
+        >
+          HYLY
+        </Link>
         <button
           onClick={onClose}
           aria-label="Close menu"
-          className="p-2 text-[#9ea3b0] hover:text-[#f6f4f0] transition-colors cursor-pointer"
+          className="p-2 text-[#171717] hover:opacity-60 transition-opacity cursor-pointer"
         >
           <X className="w-6 h-6" />
         </button>
       </div>
 
       {/* Nav Links */}
-      <nav className="my-auto py-8">
-        <ul className="space-y-6">
-          {headerNavLinks.map((link, idx) => (
+      <nav className="my-auto py-10">
+        <ul ref={linksRef} className="space-y-6">
+          {navLinks.map((link, idx) => (
             <li key={link.href}>
               <Link
                 href={link.href}
                 onClick={onClose}
-                className="group flex items-center justify-between text-2xl sm:text-3xl font-light text-[#f6f4f0] hover:text-[#c5a880] transition-colors"
+                className="group flex items-center justify-between font-serif-editorial text-3xl sm:text-4xl text-[#171717] hover:text-[#8B6A4D] transition-colors"
               >
-                <div className="flex items-baseline gap-4">
-                  <span className="text-xs font-mono text-[#c5a880]/60">
-                    0{idx + 1}
-                  </span>
-                  <span>{link.label}</span>
-                </div>
-                <ArrowUpRight className="w-5 h-5 opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0 text-[#c5a880]" />
+                <span>{link.label}</span>
+                <ArrowUpRight className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity text-[#8B6A4D]" />
               </Link>
             </li>
           ))}
@@ -70,46 +92,32 @@ export function MobileMenu({
       </nav>
 
       {/* Bottom Actions & Contacts */}
-      <div className="pt-6 border-t border-white/[0.08] space-y-4">
+      <div className="pt-6 border-t border-[#E5E5E5] space-y-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <Button
-            variant="brass"
+            href="/contact"
+            variant="pill-dark"
             size="md"
-            className="w-full"
-            onClick={() => {
-              onClose();
-              onOpenSampleModal();
-            }}
+            className="w-full text-center"
+            onClick={onClose}
           >
-            Request Sample Kit
+            Get Consultation
           </Button>
           <Button
             href={companyData.contact.whatsappLink}
             external
-            variant="secondary"
+            variant="pill-outline"
             size="md"
             className="w-full"
           >
-            <MessageCircle className="w-4 h-4 text-[#c5a880] mr-2 inline" />
-            WhatsApp Atelier
+            <MessageCircle className="w-4 h-4 mr-2 inline" />
+            WhatsApp Studio
           </Button>
         </div>
 
-        <div className="flex flex-wrap items-center justify-between text-xs text-[#9ea3b0] pt-2">
-          <a
-            href={`tel:${companyData.contact.phone}`}
-            className="hover:text-[#f6f4f0] inline-flex items-center gap-1.5"
-          >
-            <Phone className="w-3.5 h-3.5 text-[#c5a880]" />
-            {companyData.contact.phone}
-          </a>
-          <a
-            href={`mailto:${companyData.contact.email}`}
-            className="hover:text-[#f6f4f0] inline-flex items-center gap-1.5"
-          >
-            <Mail className="w-3.5 h-3.5 text-[#c5a880]" />
-            {companyData.contact.email}
-          </a>
+        <div className="flex flex-wrap items-center justify-between text-xs text-[#6B6B6B] pt-2">
+          <span>{companyData.contact.phone}</span>
+          <span>{companyData.contact.email}</span>
         </div>
       </div>
     </div>
