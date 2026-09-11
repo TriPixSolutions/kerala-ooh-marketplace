@@ -56,11 +56,11 @@ export function ContactForm() {
 
   const materialOptions = [
     "Veneers",
-    "Decorative Materials",
+    "Decorative Surfaces",
+    "Plywood",
+    "Architectural Boards",
     "Hardware Solutions",
-    "Plywood & Boards",
-    "Home Applications",
-    "Custom Craftsmanship",
+    "Interior Applications",
   ];
 
   const handleMaterialToggle = (material: string) => {
@@ -86,15 +86,15 @@ export function ContactForm() {
 
   if (isSuccess) {
     return (
-      <div className="bg-white rounded-[28px] border border-[#E5E5E5] p-8 sm:p-14 text-center shadow-[0_15px_35px_rgba(0,0,0,0.03)]">
+      <div className="bg-white rounded-2xl border border-[#E5E5E5] p-8 sm:p-14 text-center shadow-sm">
         <div className="w-16 h-16 rounded-full bg-[#8B6A4D]/10 flex items-center justify-center mx-auto mb-6 text-[#8B6A4D]">
           <CheckCircle2 className="w-8 h-8" />
         </div>
-        <h3 className="font-serif-editorial text-3xl font-normal text-[#171717] mb-3">
-          Inquiry Successfully Lodged
+        <h3 className="text-3xl font-bold tracking-tight text-[#111111] mb-3">
+          Inquiry Successfully Sent
         </h3>
         <p className="text-sm text-[#6B6B6B] leading-relaxed max-w-lg mx-auto mb-8">
-          Thank you. Our senior architectural materials consultant will review your project parameters and reach out within one business day with material recommendations and swatch booking details.
+          Thank you. Our material specification team will review your project parameters and respond within one business day with material recommendations and swatch booking details.
         </p>
         <Button
           variant="pill-dark"
@@ -113,17 +113,17 @@ export function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="bg-white rounded-[28px] border border-[#E5E5E5] p-8 sm:p-12 space-y-8 shadow-[0_15px_35px_rgba(0,0,0,0.03)]"
+      className="bg-white rounded-2xl border border-[#E5E5E5] p-8 sm:p-12 space-y-8 shadow-sm"
     >
       <div className="border-b border-[#E5E5E5] pb-6">
         <span className="text-xs font-mono uppercase tracking-widest text-[#8B6A4D] mb-2 block">
-          Concierge Specification
+          Direct Specification
         </span>
-        <h3 className="font-serif-editorial text-3xl sm:text-4xl font-normal text-[#171717]">
-          Schedule a Consultation
+        <h3 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#111111]">
+          Send an Inquiry
         </h3>
-        <p className="text-sm text-[#6B6B6B] mt-1">
-          Share your project details to connect with our materials atelier and request tailored project samples.
+        <p className="text-sm text-[#6B6B6B] mt-1 font-normal">
+          Share your project details to connect directly with our materials team and request tailored swatch samples.
         </p>
       </div>
 

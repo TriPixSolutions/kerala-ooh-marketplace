@@ -1,41 +1,37 @@
 "use client";
 
 import React from "react";
-import { PoliformHero } from "@/components/home/PoliformHero";
-import { PoliformCategories } from "@/components/home/PoliformCategories";
-import { PoliformCollections } from "@/components/home/PoliformCollections";
-import { PoliformAbout } from "@/components/home/PoliformAbout";
-import { PoliformProjects } from "@/components/home/PoliformProjects";
-import { MaterialStorytelling } from "@/components/home/MaterialStorytelling";
-import { PoliformStats } from "@/components/home/PoliformStats";
-import { PoliformCTA } from "@/components/home/PoliformCTA";
+import { CorporateHero } from "@/components/home/CorporateHero";
+import { CorporateCategories } from "@/components/home/CorporateCategories";
+import { CorporateFeaturedMaterials } from "@/components/home/CorporateFeaturedMaterials";
+import { CorporateWhyHYLY } from "@/components/home/CorporateWhyHYLY";
+import { CorporateProjects } from "@/components/home/CorporateProjects";
+import { CorporateAboutSection } from "@/components/home/CorporateAboutSection";
+import { CorporateCTA } from "@/components/home/CorporateCTA";
 
 export default function HomePage() {
   return (
     <div className="bg-[#F7F5F2]">
-      {/* SECTION 1: Hero Card Layout (Single Premium Visual + Floating Card) */}
-      <PoliformHero />
+      {/* SECTION 1: Full-Screen Premium Hero */}
+      <CorporateHero />
 
-      {/* SECTION 2: Material Categories (Horizontal Swipe on Mobile) */}
-      <PoliformCategories />
+      {/* SECTION 2: Product Categories (Horizontal swipe on mobile, clean grid on desktop) */}
+      <CorporateCategories />
 
-      {/* SECTION 3: Featured Collections (Poliform Inspired) */}
-      <PoliformCollections />
+      {/* SECTION 3: Featured Materials (Large showcase cards, minimal text) */}
+      <CorporateFeaturedMaterials />
 
-      {/* SECTION 4: About HYLY (Editorial Layout, Strong Imagery) */}
-      <PoliformAbout />
+      {/* SECTION 4: Why HYLY (Simple statistics section, large numbers) */}
+      <CorporateWhyHYLY />
 
-      {/* SECTION 5: Projects Showcase (Horizontal Swipe on Mobile) */}
-      <PoliformProjects />
+      {/* SECTION 5: Project Showcase (Large project cards, premium imagery) */}
+      <CorporateProjects />
 
-      {/* SECTION 6: Material Storytelling (GSAP 4-Phase Reveal) */}
-      <MaterialStorytelling />
+      {/* SECTION 6: About HYLY (Large editorial layout, one image, one short paragraph) */}
+      <CorporateAboutSection />
 
-      {/* SECTION 7: Statistics Grid */}
-      <PoliformStats />
-
-      {/* SECTION 8: Contact CTA (Large Black Section) */}
-      <PoliformCTA />
+      {/* SECTION 7: Contact CTA (Dark section: "Let's Build Something Exceptional.") */}
+      <CorporateCTA />
     </div>
   );
 }

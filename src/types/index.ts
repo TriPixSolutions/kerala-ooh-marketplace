@@ -2,6 +2,9 @@ export type ProjectCategory =
   | "all"
   | "residential"
   | "commercial"
+  | "hospitality"
+  | "retail"
+  | "custom-projects"
   | "kitchens"
   | "wardrobes"
   | "decorative-works";

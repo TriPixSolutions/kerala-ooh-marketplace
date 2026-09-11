@@ -44,8 +44,8 @@ export function ProjectGrid({
           ))}
         </div>
       ) : (
-        <div className="text-center py-16 bg-[#111317] border border-white/[0.08]">
-          <p className="text-sm font-light text-[#9ea3b0]">
+        <div className="text-center py-16 bg-[#ECE7DF] border border-[#E5E5E5] rounded-xl">
+          <p className="text-sm font-normal text-[#6B6B6B]">
             No projects found in this category currently.
           </p>
         </div>

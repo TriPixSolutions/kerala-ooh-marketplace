@@ -7,8 +7,8 @@ import { projectsData } from "@/lib/data/projects";
 import { Container } from "@/components/shared/Container";
 import { Button } from "@/components/shared/Button";
 import { ProjectCard } from "@/components/projects/ProjectCard";
-import { CTABanner } from "@/components/shared/CTA";
-import { ArrowLeft, ArrowUpRight, MapPin, Calendar, Building, Sparkles } from "lucide-react";
+import { CorporateCTA } from "@/components/home/CorporateCTA";
+import { ArrowLeft, ArrowUpRight, MapPin, Sparkles } from "lucide-react";
 
 interface ProjectPageProps {
   params: Promise<{ slug: string }>;
@@ -66,7 +66,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
     .slice(0, 2);
 
   return (
-    <article className="pt-36 sm:pt-44 md:pt-48 bg-[#F7F5F2]">
+    <article className="pt-28 sm:pt-36 bg-[#F7F5F2]">
       {/* Header */}
       <section className="pb-12 sm:pb-16 border-b border-[#E5E5E5]">
         <Container size="wide">
@@ -74,14 +74,14 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
             <div className="mb-8">
               <Link
                 href="/projects"
-                className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#6B6B6B] hover:text-[#171717] transition-colors"
+                className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#6B6B6B] hover:text-[#111111] transition-colors"
               >
-                <ArrowLeft className="w-3.5 h-3.5" /> Back to Portfolio Archive
+                <ArrowLeft className="w-3.5 h-3.5" /> Back to Projects
               </Link>
             </div>
 
             <div className="flex flex-wrap items-center gap-3 mb-6">
-              <span className="text-xs bg-white text-[#171717] px-4 py-1 rounded-full border border-[#E5E5E5]">
+              <span className="text-xs bg-white text-[#111111] px-4 py-1 rounded-full border border-[#E5E5E5]">
                 {project.categoryLabel}
               </span>
               <span className="text-xs font-mono text-[#6B6B6B] bg-white px-3 py-1 rounded-full border border-[#E5E5E5]">
@@ -89,22 +89,22 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
               </span>
             </div>
 
-            <h1 className="font-serif-editorial text-4xl sm:text-6xl md:text-7xl font-normal leading-[1.08] text-[#171717] tracking-tight mb-6">
+            <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-[#111111] mb-6">
               {project.title}
             </h1>
 
-            <p className="text-base sm:text-xl text-[#6B6B6B] leading-relaxed max-w-3xl">
+            <p className="text-base sm:text-xl text-[#6B6B6B] leading-relaxed max-w-3xl font-normal">
               {project.subtitle}
             </p>
           </div>
         </Container>
       </section>
 
-      {/* Hero Cover Image (Rounded 28px) */}
+      {/* Hero Cover Image */}
       <section className="py-12 sm:py-16">
         <Container size="wide">
           <div className="max-w-6xl mx-auto">
-            <div className="relative aspect-[16/9.5] w-full rounded-[28px] overflow-hidden bg-[#EAE7E1] shadow-[0_20px_45px_rgba(0,0,0,0.06)]">
+            <div className="relative aspect-[16/9.5] w-full rounded-2xl overflow-hidden bg-[#ECE7DF] shadow-sm">
               <Image
                 src={project.coverImage}
                 alt={project.title}
@@ -128,16 +128,16 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                 <span className="text-xs font-mono uppercase tracking-widest text-[#8B6A4D] mb-3 block">
                   The Design Narrative
                 </span>
-                <h2 className="font-serif-editorial text-3xl sm:text-4xl text-[#171717] font-normal mb-6">
+                <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#111111] mb-6">
                   Architectural Synthesis
                 </h2>
-                <p className="text-base sm:text-lg text-[#6B6B6B] leading-relaxed">
+                <p className="text-base sm:text-lg text-[#6B6B6B] leading-relaxed font-normal">
                   {project.overview}
                 </p>
               </div>
 
               {/* Highlights Card */}
-              <div className="p-8 bg-white rounded-[28px] border border-[#E5E5E5]">
+              <div className="p-8 bg-white rounded-2xl border border-[#E5E5E5]">
                 <span className="text-xs font-mono uppercase tracking-widest text-[#8B6A4D] block mb-4">
                   Key Accomplishments
                 </span>
@@ -145,7 +145,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                   {project.highlights.map((highlight, idx) => (
                     <li
                       key={idx}
-                      className="flex items-start gap-3 text-sm text-[#171717]"
+                      className="flex items-start gap-3 text-sm text-[#111111]"
                     >
                       <Sparkles className="w-4 h-4 text-[#8B6A4D] shrink-0 mt-0.5" />
                       <span>{highlight}</span>
@@ -156,11 +156,11 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
 
               {/* Quote */}
               {project.quote && (
-                <div className="p-8 bg-white rounded-[28px] border-l-4 border-[#8B6A4D] border-y border-r border-[#E5E5E5]">
-                  <p className="font-serif-editorial text-xl sm:text-2xl italic text-[#171717] mb-4">
-                    "{project.quote.text}"
+                <div className="p-8 bg-white rounded-2xl border-l-4 border-[#8B6A4D] border-y border-r border-[#E5E5E5]">
+                  <p className="text-xl sm:text-2xl italic text-[#111111] mb-4">
+                    &ldquo;{project.quote.text}&rdquo;
                   </p>
-                  <div className="text-sm font-medium text-[#171717]">
+                  <div className="text-sm font-bold text-[#111111]">
                     {project.quote.author}
                   </div>
                   <div className="text-xs text-[#6B6B6B]">
@@ -172,7 +172,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
 
             {/* Sidebar Specifications Card */}
             <div className="lg:col-span-5">
-              <div className="p-8 bg-white rounded-[28px] border border-[#E5E5E5] sticky top-36 space-y-6 shadow-[0_10px_30px_rgba(0,0,0,0.03)]">
+              <div className="p-8 bg-white rounded-2xl border border-[#E5E5E5] sticky top-36 space-y-6 shadow-sm">
                 <span className="text-xs font-mono uppercase tracking-widest text-[#8B6A4D] block pb-4 border-b border-[#E5E5E5]">
                   Commission Specifications
                 </span>
@@ -180,7 +180,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                 <div className="space-y-4 text-xs font-mono">
                   <div className="flex justify-between py-2 border-b border-[#F7F5F2]">
                     <span className="text-[#6B6B6B]">Location:</span>
-                    <span className="text-[#171717] font-sans flex items-center gap-1">
+                    <span className="text-[#111111] font-sans flex items-center gap-1">
                       <MapPin className="w-3.5 h-3.5 text-[#8B6A4D]" />
                       {project.location}
                     </span>
@@ -188,24 +188,24 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
 
                   <div className="flex justify-between py-2 border-b border-[#F7F5F2]">
                     <span className="text-[#6B6B6B]">Year:</span>
-                    <span className="text-[#171717] font-sans">{project.year}</span>
+                    <span className="text-[#111111] font-sans">{project.year}</span>
                   </div>
 
                   <div className="flex justify-between py-2 border-b border-[#F7F5F2]">
                     <span className="text-[#6B6B6B]">Client Typology:</span>
-                    <span className="text-[#171717] font-sans">{project.clientType}</span>
+                    <span className="text-[#111111] font-sans">{project.clientType}</span>
                   </div>
 
                   {project.architect && (
                     <div className="flex justify-between py-2 border-b border-[#F7F5F2]">
                       <span className="text-[#6B6B6B]">Architectural Lead:</span>
-                      <span className="text-[#171717] font-sans">{project.architect}</span>
+                      <span className="text-[#111111] font-sans">{project.architect}</span>
                     </div>
                   )}
 
                   <div className="pt-2">
                     <span className="text-[#6B6B6B] block mb-1">HYLY Scope:</span>
-                    <p className="text-xs font-sans text-[#171717] leading-relaxed">
+                    <p className="text-xs font-sans text-[#111111] leading-relaxed">
                       {project.scope}
                     </p>
                   </div>
@@ -230,7 +230,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
               <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#8B6A4D] mb-3 block">
                 Material Palette
               </span>
-              <h2 className="font-serif-editorial text-3xl sm:text-4xl text-[#171717]">
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#111111]">
                 Materials Specified on this Project
               </h2>
             </div>
@@ -239,24 +239,24 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
               {project.materialsUsed.map((mat) => (
                 <div
                   key={mat.name}
-                  className="p-8 bg-white rounded-[28px] border border-[#E5E5E5] flex flex-col justify-between"
+                  className="p-8 bg-white rounded-2xl border border-[#E5E5E5] flex flex-col justify-between"
                 >
                   <div>
                     <span className="text-xs font-mono uppercase text-[#8B6A4D] mb-2 block">
                       {mat.serviceSlug.replace("-", " ")}
                     </span>
-                    <h3 className="font-serif-editorial text-2xl font-normal text-[#171717] mb-3">
+                    <h3 className="text-2xl font-bold tracking-tight text-[#111111] mb-3">
                       {mat.name}
                     </h3>
-                    <p className="text-sm text-[#6B6B6B] leading-relaxed mb-6">
+                    <p className="text-sm text-[#6B6B6B] leading-relaxed mb-6 font-normal">
                       {mat.description}
                     </p>
                   </div>
                   <Link
-                    href={`/services#${mat.serviceSlug}`}
-                    className="inline-flex items-center gap-1 text-xs font-mono uppercase tracking-wider text-[#171717] hover:text-[#8B6A4D] transition-colors"
+                    href="/materials"
+                    className="inline-flex items-center gap-1 text-xs font-mono uppercase tracking-wider text-[#111111] hover:text-[#8B6A4D] transition-colors"
                   >
-                    View Discipline <ArrowUpRight className="w-3.5 h-3.5" />
+                    View Materials Catalog <ArrowUpRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
               ))}
@@ -273,7 +273,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
               <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#8B6A4D] mb-3 block">
                 Visual Documentation
               </span>
-              <h2 className="font-serif-editorial text-3xl sm:text-4xl text-[#171717]">
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#111111]">
                 Commission Gallery
               </h2>
             </div>
@@ -282,7 +282,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
               {project.gallery.map((img, idx) => (
                 <div
                   key={idx}
-                  className="relative aspect-[4/3] rounded-[28px] overflow-hidden bg-[#EAE7E1] shadow-[0_10px_25px_rgba(0,0,0,0.03)]"
+                  className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-[#ECE7DF] shadow-sm"
                 >
                   <Image
                     src={img}
@@ -307,7 +307,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                 <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#8B6A4D] mb-2 block">
                   Continuity
                 </span>
-                <h2 className="font-serif-editorial text-3xl sm:text-4xl text-[#171717]">
+                <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#111111]">
                   Related Commissions
                 </h2>
               </div>
@@ -325,9 +325,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
         </Container>
       </section>
 
-      <CTABanner
-        title={`Commission HYLY for Your ${project.categoryLabel} Architecture`}
-      />
+      <CorporateCTA />
     </article>
   );
 }

@@ -23,12 +23,12 @@ export function MobileMenu({ isOpen, onClose, onOpenSample }: MobileMenuProps) {
       gsap.fromTo(
         containerRef.current,
         { opacity: 0, y: -20 },
-        { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }
+        { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }
       );
       gsap.fromTo(
         linksRef.current.children,
-        { opacity: 0, y: 24 },
-        { opacity: 1, y: 0, duration: 0.45, stagger: 0.06, ease: "power2.out" }
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.35, stagger: 0.05, ease: "power2.out" }
       );
     } else {
       document.body.style.overflow = "";
@@ -49,7 +49,7 @@ export function MobileMenu({ isOpen, onClose, onOpenSample }: MobileMenuProps) {
       aria-label="Navigation Menu"
       className="fixed inset-0 z-50 bg-[#F7F5F2] flex flex-col justify-between p-6 sm:p-10 md:p-12 overflow-y-auto"
     >
-      {/* Top Bar */}
+      {/* Top Header */}
       <div className="flex items-center justify-between border-b border-[#E5E5E5] pb-5">
         <Link
           href="/"
@@ -67,7 +67,7 @@ export function MobileMenu({ isOpen, onClose, onOpenSample }: MobileMenuProps) {
         </button>
       </div>
 
-      {/* Nav Links with Bold Inter Typography */}
+      {/* 5 Core Navigation Links */}
       <nav className="my-auto py-8">
         <ul ref={linksRef} className="space-y-4 sm:space-y-6">
           {headerNavLinks.map((link) => (
@@ -87,7 +87,7 @@ export function MobileMenu({ isOpen, onClose, onOpenSample }: MobileMenuProps) {
         </ul>
       </nav>
 
-      {/* Bottom Actions & Contacts */}
+      {/* Bottom Actions */}
       <div className="pt-6 border-t border-[#E5E5E5] space-y-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <Link
@@ -95,20 +95,20 @@ export function MobileMenu({ isOpen, onClose, onOpenSample }: MobileMenuProps) {
             onClick={onClose}
             className="w-full py-3.5 px-6 rounded-full bg-[#111111] text-white font-medium text-sm text-center hover:bg-[#262626] transition-colors"
           >
-            Get Consultation
+            Contact Us
           </Link>
-          <button
-            onClick={() => {
-              onClose();
-              onOpenSample();
-            }}
-            className="w-full py-3.5 px-6 rounded-full border border-[#111111] text-[#111111] font-medium text-sm text-center hover:bg-[#111111] hover:text-white transition-colors cursor-pointer"
+          <a
+            href={companyData.contact.whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full py-3.5 px-6 rounded-full border border-[#111111] text-[#111111] font-medium text-sm text-center hover:bg-[#111111] hover:text-white transition-colors flex items-center justify-center gap-2"
           >
-            Request Swatch Kit
-          </button>
+            <MessageCircle className="w-4 h-4" />
+            <span>WhatsApp</span>
+          </a>
         </div>
 
-        <div className="flex flex-wrap items-center justify-between text-xs text-[#6B6B6B] pt-2">
+        <div className="flex flex-wrap items-center justify-between text-xs text-[#666666] pt-2">
           <span>{companyData.contact.phone}</span>
           <span>{companyData.contact.email}</span>
           <span className="text-[#8B6A4D] font-medium">Kochi • Bangalore • Dubai</span>

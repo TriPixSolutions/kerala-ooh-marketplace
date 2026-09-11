@@ -8,7 +8,7 @@ export function StudioLocations() {
       {companyData.studios.map((studio) => (
         <div
           key={studio.city}
-          className="p-8 bg-white rounded-[28px] border border-[#E5E5E5] flex flex-col justify-between shadow-[0_10px_25px_rgba(0,0,0,0.02)] transition-all hover:-translate-y-1 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)]"
+          className="p-8 bg-white rounded-2xl border border-[#E5E5E5] flex flex-col justify-between shadow-sm transition-all hover:border-[#8B6A4D]/40"
         >
           <div>
             <div className="flex items-center justify-between mb-4">
@@ -18,7 +18,7 @@ export function StudioLocations() {
               <MapPin className="w-4 h-4 text-[#8B6A4D]" />
             </div>
 
-            <h3 className="font-serif-editorial text-2xl sm:text-3xl font-normal text-[#171717] mb-3">
+            <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#111111] mb-3">
               {studio.city}
             </h3>
 

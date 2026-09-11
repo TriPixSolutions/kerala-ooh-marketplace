@@ -69,7 +69,7 @@ export default function ContactPage() {
               <WhatsAppButton className="w-full" />
 
               {/* Concierge Desk Details */}
-              <div className="p-8 bg-white rounded-[28px] border border-[#E5E5E5] space-y-6 shadow-[0_10px_25px_rgba(0,0,0,0.02)]">
+              <div className="p-8 bg-white rounded-2xl border border-[#E5E5E5] space-y-6 shadow-sm">
                 <span className="text-xs font-mono uppercase tracking-widest text-[#8B6A4D] block pb-4 border-b border-[#E5E5E5]">
                   Global Specification Desks
                 </span>
@@ -79,7 +79,7 @@ export default function ContactPage() {
                     <span className="text-[#6B6B6B] block mb-1">Architectural Specification:</span>
                     <a
                       href={`mailto:${companyData.contact.architectsDesk}`}
-                      className="text-sm font-sans text-[#171717] hover:text-[#8B6A4D] transition-colors"
+                      className="text-sm font-sans font-medium text-[#111111] hover:text-[#8B6A4D] transition-colors"
                     >
                       {companyData.contact.architectsDesk}
                     </a>
@@ -89,7 +89,7 @@ export default function ContactPage() {
                     <span className="text-[#6B6B6B] block mb-1">Private Client Concierge:</span>
                     <a
                       href={`mailto:${companyData.contact.email}`}
-                      className="text-sm font-sans text-[#171717] hover:text-[#8B6A4D] transition-colors"
+                      className="text-sm font-sans font-medium text-[#111111] hover:text-[#8B6A4D] transition-colors"
                     >
                       {companyData.contact.email}
                     </a>
@@ -99,7 +99,7 @@ export default function ContactPage() {
                     <span className="text-[#6B6B6B] block mb-1">Central Switchboard:</span>
                     <a
                       href={`tel:${companyData.contact.phone}`}
-                      className="text-sm font-sans text-[#171717] hover:text-[#8B6A4D] transition-colors"
+                      className="text-sm font-sans font-medium text-[#111111] hover:text-[#8B6A4D] transition-colors"
                     >
                       {companyData.contact.phone}
                     </a>
@@ -108,10 +108,10 @@ export default function ContactPage() {
               </div>
 
               {/* Interactive Google Map Locator Card */}
-              <div className="p-8 bg-white rounded-[28px] border border-[#E5E5E5] shadow-[0_10px_25px_rgba(0,0,0,0.02)]">
+              <div className="p-8 bg-white rounded-2xl border border-[#E5E5E5] shadow-sm">
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-xs font-mono uppercase tracking-wider text-[#8B6A4D]">
-                    Kochi Flagship Atelier
+                    Kochi Flagship Studio
                   </span>
                   <MapPin className="w-4 h-4 text-[#8B6A4D]" />
                 </div>
@@ -150,12 +150,12 @@ export default function ContactPage() {
       {/* Studios Section */}
       <section id="studios" className="py-24 sm:py-32 border-b border-[#E5E5E5]">
         <Container size="wide">
-          <div className="max-w-3xl mx-auto text-center mb-16 sm:mb-24">
+          <div className="max-w-3xl mx-auto text-center mb-16 sm:mb-20">
             <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#8B6A4D] mb-3 block">
               Our Locations
             </span>
-            <h2 className="font-serif-editorial text-4xl sm:text-5xl font-normal text-[#171717] tracking-tight">
-              Flagship Experience Ateliers
+            <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#111111]">
+              Flagship Experience Studios
             </h2>
           </div>
 
@@ -168,26 +168,26 @@ export default function ContactPage() {
       {/* FAQ */}
       <section className="py-24 sm:py-32">
         <Container size="wide">
-          <div className="max-w-3xl mx-auto text-center mb-16 sm:mb-24">
+          <div className="max-w-3xl mx-auto text-center mb-16 sm:mb-20">
             <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#8B6A4D] mb-3 block">
               Guidance
             </span>
-            <h2 className="font-serif-editorial text-4xl sm:text-5xl font-normal text-[#171717] tracking-tight">
+            <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#111111]">
               Frequently Asked Questions
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
             {faqs.map((faq, idx) => (
               <div
                 key={idx}
-                className="p-8 bg-white rounded-[28px] border border-[#E5E5E5] space-y-3"
+                className="p-8 bg-white rounded-2xl border border-[#E5E5E5] space-y-3 shadow-sm"
               >
-                <h3 className="text-lg font-medium text-[#171717] flex items-start gap-2">
+                <h3 className="text-base sm:text-lg font-bold text-[#111111] flex items-start gap-2">
                   <HelpCircle className="w-5 h-5 text-[#8B6A4D] shrink-0 mt-0.5" />
                   <span>{faq.q}</span>
                 </h3>
-                <p className="text-sm text-[#6B6B6B] leading-relaxed pl-7">
+                <p className="text-xs sm:text-sm text-[#6B6B6B] leading-relaxed pl-7 font-normal">
                   {faq.a}
                 </p>
               </div>

@@ -2,13 +2,14 @@
 
 :root {
   --bg-main: #F7F5F2;
+  --bg-secondary: #ECE7DF;
   --bg-card: #FFFFFF;
-  --bg-card-dark: #111111;
+  --bg-dark: #111111;
   --text-main: #111111;
-  --text-muted: #6B6B6B;
-  --text-subtle: #9C9C9C;
-  --accent-walnut: #8B6A4D;
-  --accent-hover: #75563D;
+  --text-muted: #666666;
+  --text-subtle: #8E8E8E;
+  --accent-wood: #8B6A4D;
+  --accent-hover: #73553C;
   --border-light: #E5E5E5;
   --border-dark: rgba(255, 255, 255, 0.12);
 }
@@ -34,15 +35,16 @@ body {
   overflow-x: hidden;
 }
 
-/* Poliform Modern Swiss Headings */
+/* International Luxury Typography */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-inter, -apple-system, BlinkMacSystemFont, sans-serif);
-  letter-spacing: -0.025em;
+  letter-spacing: -0.028em;
   font-weight: 600;
+  color: var(--text-main);
 }
 
-/* Poliform Card Styles */
-.poliform-card {
+/* Poliform / Minotti Card Styling */
+.hyly-card {
   border-radius: 28px;
   overflow: hidden;
   background-color: #FFFFFF;
@@ -50,15 +52,15 @@ h1, h2, h3, h4, h5, h6 {
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.poliform-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.08);
+.hyly-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.08);
 }
 
-/* Circular Arrow Action Button */
-.btn-circle-arrow {
-  width: 40px;
-  height: 40px;
+/* Action Circle Buttons */
+.btn-action-circle {
+  width: 44px;
+  height: 44px;
   border-radius: 9999px;
   background-color: #111111;
   color: #FFFFFF;
@@ -69,38 +71,69 @@ h1, h2, h3, h4, h5, h6 {
   flex-shrink: 0;
 }
 
-.btn-circle-arrow:hover {
+.btn-action-circle:hover {
   background-color: #8B6A4D;
-  transform: scale(1.06);
+  transform: scale(1.05);
 }
 
-/* Pill Button Styles */
+/* Clean Pill Buttons */
 .pill-btn-dark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 28px;
+  border-radius: 9999px;
   background-color: #111111;
   color: #FFFFFF;
-  border-radius: 9999px;
+  font-size: 14px;
   font-weight: 500;
+  letter-spacing: -0.01em;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .pill-btn-dark:hover {
   background-color: #262626;
   transform: translateY(-1px);
-  box-shadow: 0 10px 20px -5px rgba(17, 17, 17, 0.2);
+  box-shadow: 0 10px 20px -5px rgba(17, 17, 17, 0.25);
 }
 
 .pill-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 28px;
+  border-radius: 9999px;
   background-color: transparent;
   color: #111111;
   border: 1px solid #111111;
-  border-radius: 9999px;
+  font-size: 14px;
   font-weight: 500;
+  letter-spacing: -0.01em;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .pill-btn-outline:hover {
   background-color: #111111;
   color: #FFFFFF;
+}
+
+.pill-btn-light {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 28px;
+  border-radius: 9999px;
+  background-color: #FFFFFF;
+  color: #111111;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pill-btn-light:hover {
+  background-color: #ECE7DF;
+  transform: translateY(-1px);
 }
 
 /* Horizontal Swipe Hide Scrollbar */
@@ -112,7 +145,7 @@ h1, h2, h3, h4, h5, h6 {
   scrollbar-width: none;
 }
 
-/* Custom Minimal Scrollbar */
+/* Minimal Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;
@@ -123,7 +156,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #D6D3CD;
+  background: #D1CAC0;
   border-radius: 9999px;
 }
 

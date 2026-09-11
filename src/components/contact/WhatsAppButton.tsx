@@ -14,7 +14,7 @@ export function WhatsAppButton({
       href={companyData.contact.whatsappLink}
       target="_blank"
       rel="noopener noreferrer"
-      className={`inline-flex items-center justify-between p-5 bg-white rounded-[24px] border border-[#E5E5E5] hover:border-[#171717] transition-all shadow-[0_5px_20px_rgba(0,0,0,0.02)] group ${className}`}
+      className={`inline-flex items-center justify-between p-5 bg-white rounded-2xl border border-[#E5E5E5] hover:border-[#8B6A4D]/50 transition-all shadow-sm group ${className}`}
     >
       <div className="flex items-center gap-3.5">
         <div className="w-10 h-10 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center">
@@ -24,12 +24,12 @@ export function WhatsAppButton({
           <span className="block text-xs font-mono uppercase tracking-wider text-emerald-600">
             Instant Studio Line
           </span>
-          <span className="text-sm font-medium text-[#171717]">
+          <span className="text-sm font-semibold text-[#111111]">
             {label}
           </span>
         </div>
       </div>
-      <ArrowUpRight className="w-4 h-4 text-[#171717] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+      <ArrowUpRight className="w-4 h-4 text-[#111111] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
     </a>
   );
 }
