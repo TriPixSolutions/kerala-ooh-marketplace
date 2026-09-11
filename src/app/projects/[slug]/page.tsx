@@ -89,11 +89,11 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
               </span>
             </div>
 
-            <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-[#111111] mb-6">
+            <h1 className="font-serif text-5xl sm:text-7xl md:text-8xl font-normal tracking-tight text-[#111111] mb-6">
               {project.title}
             </h1>
 
-            <p className="text-base sm:text-xl text-[#6B6B6B] leading-relaxed max-w-3xl font-normal">
+            <p className="text-base sm:text-xl text-[#555555] leading-relaxed max-w-3xl font-normal">
               {project.subtitle}
             </p>
           </div>
@@ -128,10 +128,10 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                 <span className="text-xs font-mono uppercase tracking-widest text-[#8B6A4D] mb-3 block">
                   The Design Narrative
                 </span>
-                <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#111111] mb-6">
+                <h2 className="font-serif text-3xl sm:text-5xl font-medium tracking-tight text-[#111111] mb-6">
                   Architectural Synthesis
                 </h2>
-                <p className="text-base sm:text-lg text-[#6B6B6B] leading-relaxed font-normal">
+                <p className="text-base sm:text-lg text-[#555555] leading-relaxed font-normal">
                   {project.overview}
                 </p>
               </div>
@@ -230,7 +230,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
               <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#8B6A4D] mb-3 block">
                 Material Palette
               </span>
-              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#111111]">
+              <h2 className="font-serif text-3xl sm:text-5xl font-medium tracking-tight text-[#111111]">
                 Materials Specified on this Project
               </h2>
             </div>
@@ -245,10 +245,10 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                     <span className="text-xs font-mono uppercase text-[#8B6A4D] mb-2 block">
                       {mat.serviceSlug.replace("-", " ")}
                     </span>
-                    <h3 className="text-2xl font-bold tracking-tight text-[#111111] mb-3">
+                    <h3 className="font-serif text-2xl sm:text-3xl font-medium tracking-tight text-[#111111] mb-3">
                       {mat.name}
                     </h3>
-                    <p className="text-sm text-[#6B6B6B] leading-relaxed mb-6 font-normal">
+                    <p className="text-sm text-[#555555] leading-relaxed mb-6 font-normal">
                       {mat.description}
                     </p>
                   </div>
@@ -273,7 +273,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
               <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#8B6A4D] mb-3 block">
                 Visual Documentation
               </span>
-              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#111111]">
+              <h2 className="font-serif text-3xl sm:text-5xl font-medium tracking-tight text-[#111111]">
                 Commission Gallery
               </h2>
             </div>
@@ -307,7 +307,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                 <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#8B6A4D] mb-2 block">
                   Continuity
                 </span>
-                <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#111111]">
+                <h2 className="font-serif text-3xl sm:text-5xl font-medium tracking-tight text-[#111111]">
                   Related Commissions
                 </h2>
               </div>

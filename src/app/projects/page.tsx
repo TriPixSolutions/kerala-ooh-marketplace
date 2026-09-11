@@ -14,16 +14,16 @@ export default function ProjectsPage() {
             <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#8B6A4D] block">
               Portfolio
             </span>
-            <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-[#111111]">
+            <h1 className="font-serif text-5xl sm:text-7xl md:text-8xl font-normal tracking-tight text-[#111111]">
               Featured Projects
             </h1>
-            <p className="text-sm sm:text-base text-[#6B6B6B] max-w-xl font-normal">
+            <p className="text-sm sm:text-base text-[#555555] max-w-xl font-normal">
               A curated selection of residential estates, executive commercial spaces, hospitality retreats, and custom interior millwork.
             </p>
           </div>
 
           <div className="pt-4">
-            <Suspense fallback={<div className="text-center py-20 text-[#6B6B6B]">Loading portfolio...</div>}>
+            <Suspense fallback={<div className="text-center py-20 text-[#555555]">Loading portfolio...</div>}>
               <ProjectGrid showFilter={true} />
             </Suspense>
           </div>

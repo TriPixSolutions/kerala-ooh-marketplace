@@ -18,11 +18,11 @@ export function StudioLocations() {
               <MapPin className="w-4 h-4 text-[#8B6A4D]" />
             </div>
 
-            <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#111111] mb-3">
+            <h3 className="font-serif text-2xl sm:text-3xl font-medium tracking-tight text-[#111111] mb-3">
               {studio.city}
             </h3>
 
-            <p className="text-sm text-[#6B6B6B] leading-relaxed mb-6">
+            <p className="text-sm text-[#555555] leading-relaxed mb-6 font-normal">
               {studio.address}, {studio.area}
             </p>
 

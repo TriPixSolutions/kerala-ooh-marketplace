@@ -42,10 +42,10 @@ export default function MaterialsPage() {
             <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#8B6A4D] block">
               Architectural Library
             </span>
-            <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-[#111111]">
+            <h1 className="font-serif text-5xl sm:text-7xl md:text-8xl font-normal tracking-tight text-[#111111]">
               Materials
             </h1>
-            <p className="text-sm sm:text-base md:text-lg text-[#666666] max-w-xl font-normal">
+            <p className="text-sm sm:text-base md:text-lg text-[#555555] max-w-xl font-normal">
               A curated catalog of botanical hardwoods, tactile surfaces, calibrated cores, and concealed kinematics.
             </p>
           </div>
@@ -59,7 +59,7 @@ export default function MaterialsPage() {
                 className={`px-4 py-2 rounded-full text-xs font-medium tracking-wide transition-all cursor-pointer ${
                   activeCategory === tab
                     ? "bg-[#111111] text-white shadow-sm"
-                    : "bg-white border border-[#E5E5E5] text-[#666666] hover:text-[#111111] hover:border-[#111111]"
+                    : "bg-white border border-[#E5E5E5] text-[#555555] hover:text-[#111111] hover:border-[#111111]"
                 }`}
               >
                 {tab}
@@ -81,7 +81,7 @@ export default function MaterialsPage() {
                     <span className="text-xs font-mono uppercase tracking-widest text-[#8B6A4D] block mb-1">
                       {col.eyebrow}
                     </span>
-                    <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-[#111111]">
+                    <h2 className="font-serif text-3xl sm:text-4xl font-medium tracking-tight text-[#111111]">
                       {col.name}
                     </h2>
                   </div>
@@ -94,7 +94,7 @@ export default function MaterialsPage() {
                 </div>
 
                 {/* Hero Image */}
-                <div className="relative aspect-[16/9] w-full rounded-[24px] overflow-hidden bg-[#EAE7E1] shadow-inner">
+                <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden bg-[#ECE7DF] shadow-inner">
                   <Image
                     src={col.heroImage}
                     alt={col.name}
@@ -105,7 +105,7 @@ export default function MaterialsPage() {
                 </div>
 
                 {/* Description */}
-                <p className="text-sm sm:text-base text-[#111111] leading-relaxed max-w-3xl font-light">
+                <p className="text-sm sm:text-base text-[#111111] leading-relaxed max-w-3xl font-normal">
                   {col.description}
                 </p>
 
@@ -119,7 +119,7 @@ export default function MaterialsPage() {
                     <div className="divide-y divide-[#E5E5E5] text-xs sm:text-sm">
                       {col.specifications.map((spec) => (
                         <div key={spec.label} className="py-2 flex justify-between gap-4">
-                          <span className="text-[#666666]">{spec.label}</span>
+                          <span className="text-[#555555]">{spec.label}</span>
                           <span className="font-medium text-[#111111] text-right">{spec.value}</span>
                         </div>
                       ))}

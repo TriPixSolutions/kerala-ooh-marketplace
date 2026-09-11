@@ -45,10 +45,10 @@ export default function ContactPage() {
             <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#8B6A4D] block">
               Concierge & Inquiries
             </span>
-            <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-[#111111]">
+            <h1 className="font-serif text-5xl sm:text-7xl md:text-8xl font-normal tracking-tight text-[#111111]">
               Initiate an Architectural Dialogue
             </h1>
-            <p className="text-sm sm:text-base md:text-lg text-[#6B6B6B] leading-relaxed max-w-2xl font-normal">
+            <p className="text-sm sm:text-base md:text-lg text-[#555555] leading-relaxed max-w-2xl font-normal">
               Connect with our material consultants, request a curated swatch box, or arrange a private consultation at our experience centres in Kochi, Bangalore, or Dubai.
             </p>
           </div>
@@ -154,7 +154,7 @@ export default function ContactPage() {
             <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#8B6A4D] mb-3 block">
               Our Locations
             </span>
-            <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#111111]">
+            <h2 className="font-serif text-3xl sm:text-5xl md:text-6xl font-medium tracking-tight text-[#111111]">
               Flagship Experience Studios
             </h2>
           </div>
@@ -172,7 +172,7 @@ export default function ContactPage() {
             <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#8B6A4D] mb-3 block">
               Guidance
             </span>
-            <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#111111]">
+            <h2 className="font-serif text-3xl sm:text-5xl md:text-6xl font-medium tracking-tight text-[#111111]">
               Frequently Asked Questions
             </h2>
           </div>

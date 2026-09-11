@@ -90,10 +90,10 @@ export function ContactForm() {
         <div className="w-16 h-16 rounded-full bg-[#8B6A4D]/10 flex items-center justify-center mx-auto mb-6 text-[#8B6A4D]">
           <CheckCircle2 className="w-8 h-8" />
         </div>
-        <h3 className="text-3xl font-bold tracking-tight text-[#111111] mb-3">
+        <h3 className="font-serif text-3xl font-medium tracking-tight text-[#111111] mb-3">
           Inquiry Successfully Sent
         </h3>
-        <p className="text-sm text-[#6B6B6B] leading-relaxed max-w-lg mx-auto mb-8">
+        <p className="text-sm text-[#555555] leading-relaxed max-w-lg mx-auto mb-8 font-normal">
           Thank you. Our material specification team will review your project parameters and respond within one business day with material recommendations and swatch booking details.
         </p>
         <Button
@@ -119,10 +119,10 @@ export function ContactForm() {
         <span className="text-xs font-mono uppercase tracking-widest text-[#8B6A4D] mb-2 block">
           Direct Specification
         </span>
-        <h3 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#111111]">
+        <h3 className="font-serif text-3xl sm:text-4xl font-medium tracking-tight text-[#111111]">
           Send an Inquiry
         </h3>
-        <p className="text-sm text-[#6B6B6B] mt-1 font-normal">
+        <p className="text-sm text-[#555555] mt-1 font-normal">
           Share your project details to connect directly with our materials team and request tailored swatch samples.
         </p>
       </div>

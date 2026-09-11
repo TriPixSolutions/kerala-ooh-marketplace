@@ -16,13 +16,13 @@ export function CorporateCategories() {
             <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#8B6A4D] mb-2 block">
               Core Disciplines
             </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#111111]">
+            <h2 className="font-serif text-3xl sm:text-5xl md:text-6xl font-medium tracking-tight text-[#111111]">
               Product Categories
             </h2>
           </div>
           <Link
             href="/materials"
-            className="text-xs sm:text-sm font-medium text-[#111111] hover:text-[#8B6A4D] flex items-center gap-1.5 transition-colors group"
+            className="text-xs sm:text-sm font-medium text-[#111111] hover:text-[#8B6A4D] flex items-center gap-1.5 transition-colors group font-sans"
           >
             <span>Explore All Materials</span>
             <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -30,16 +30,17 @@ export function CorporateCategories() {
         </div>
 
         {/* Categories: Horizontal swipe on mobile, 3-column grid on desktop */}
+        {/* Apple + Poliform style: White card with framed daylight photography and clean readable typography */}
         <div className="max-w-6xl mx-auto">
           <div className="flex gap-4 sm:gap-6 overflow-x-auto pb-4 snap-x snap-mandatory no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-2 lg:grid-cols-3">
-            {coreCategories.map((cat) => (
+            {coreCategories.map((cat, idx) => (
               <Link
                 key={cat.id}
                 href={cat.href}
-                className="group relative shrink-0 w-[78vw] sm:w-auto rounded-[28px] overflow-hidden bg-[#EAE7E1] aspect-[4/4.5] sm:aspect-[4/3.8] flex flex-col justify-between p-6 sm:p-7 snap-center shadow-sm border border-[#E5E5E5] transition-all hover:shadow-lg hover:-translate-y-1"
+                className="hyly-card group shrink-0 w-[78vw] sm:w-auto p-5 sm:p-6 bg-white border border-[#E5E5E5] flex flex-col justify-between snap-center transition-all hover:border-[#8B6A4D]/40"
               >
-                {/* Background Photography */}
-                <div className="absolute inset-0 z-0">
+                {/* Natural Light Photography Frame */}
+                <div className="relative aspect-[16/11] w-full rounded-2xl overflow-hidden bg-[#ECE7DF] mb-5">
                   <Image
                     src={cat.image}
                     alt={cat.title}
@@ -47,29 +48,32 @@ export function CorporateCategories() {
                     sizes="(max-width: 640px) 80vw, 33vw"
                     className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                </div>
-
-                {/* Top Badge */}
-                <div className="relative z-10">
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-white/80 bg-black/40 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
-                    HYLY Archive
-                  </span>
-                </div>
-
-                {/* Bottom Information & Arrow */}
-                <div className="relative z-10 flex items-end justify-between gap-3 text-white">
-                  <div>
-                    <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white mb-1">
-                      {cat.title}
-                    </h3>
-                    <p className="text-xs text-[#ECE7DF] font-light line-clamp-1">
-                      {cat.subtitle}
-                    </p>
+                  {/* Subtle Contrast Pill on Image */}
+                  <div className="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-white/95 backdrop-blur-md text-[10px] font-mono uppercase tracking-widest text-[#111111] border border-black/5 shadow-xs">
+                    0{idx + 1}
                   </div>
+                </div>
 
-                  <div className="btn-action-circle w-9 h-9 sm:w-10 sm:h-10 group-hover:bg-[#8B6A4D]">
-                    <ArrowUpRight className="w-4 h-4 text-white" />
+                {/* Crisp Text on Solid White Background for 100% WCAG Contrast */}
+                <div className="space-y-1.5 mb-5">
+                  <span className="text-[11px] font-mono uppercase tracking-widest text-[#8B6A4D] block">
+                    HYLY Discipline
+                  </span>
+                  <h3 className="font-serif text-2xl sm:text-3xl font-medium tracking-tight text-[#111111] group-hover:text-[#8B6A4D] transition-colors">
+                    {cat.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-[#555555] font-normal leading-relaxed line-clamp-1">
+                    {cat.subtitle}
+                  </p>
+                </div>
+
+                {/* Bottom Action Footer */}
+                <div className="pt-3.5 border-t border-[#E5E5E5] flex items-center justify-between">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-[#111111] group-hover:text-[#8B6A4D] transition-colors font-sans">
+                    View Materials
+                  </span>
+                  <div className="btn-action-circle w-8 h-8 sm:w-9 sm:h-9 group-hover:bg-[#8B6A4D]">
+                    <ArrowUpRight className="w-3.5 h-3.5 text-white" />
                   </div>
                 </div>
               </Link>

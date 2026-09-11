@@ -29,18 +29,22 @@ body {
   margin: 0;
   background-color: var(--bg-main);
   color: var(--text-main);
-  font-family: var(--font-inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+  font-family: var(--font-manrope), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
-/* International Luxury Typography */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-inter, -apple-system, BlinkMacSystemFont, sans-serif);
-  letter-spacing: -0.028em;
-  font-weight: 600;
+/* Large Elegant Luxury Headings (Cormorant Garamond) */
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: var(--font-cormorant), Garamond, Georgia, serif;
+  letter-spacing: -0.015em;
+  font-weight: 500;
   color: var(--text-main);
+}
+
+.font-body {
+  font-family: var(--font-manrope), -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 /* Poliform / Minotti Card Styling */

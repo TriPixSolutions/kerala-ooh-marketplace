@@ -37,16 +37,16 @@ export function ProjectCard({ project }: ProjectCardProps) {
             {project.location}
           </div>
 
-          <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#111111] mb-2 group-hover:text-[#8B6A4D] transition-colors">
+          <h3 className="font-serif text-2xl sm:text-3xl font-medium tracking-tight text-[#111111] mb-2 group-hover:text-[#8B6A4D] transition-colors">
             {project.title}
           </h3>
 
-          <p className="text-xs sm:text-sm font-normal text-[#6B6B6B] leading-relaxed mb-5 line-clamp-2">
+          <p className="text-xs sm:text-sm font-normal text-[#555555] leading-relaxed mb-5 line-clamp-2">
             {project.subtitle}
           </p>
 
           <div className="pt-3 border-t border-[#E5E5E5] mb-5">
-            <span className="block text-[11px] font-mono uppercase tracking-wider text-[#999999] mb-2">
+            <span className="block text-[11px] font-mono uppercase tracking-wider text-[#555555] mb-2">
               Materials Specified:
             </span>
             <div className="flex flex-wrap gap-1.5">

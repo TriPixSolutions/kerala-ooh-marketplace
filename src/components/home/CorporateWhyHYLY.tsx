@@ -19,10 +19,10 @@ export function CorporateWhyHYLY() {
             <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#8B6A4D] block">
               Proven Distinction
             </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#111111]">
+            <h2 className="font-serif text-3xl sm:text-5xl md:text-6xl font-medium tracking-tight text-[#111111]">
               Why HYLY
             </h2>
-            <p className="text-sm sm:text-base text-[#666666] font-normal">
+            <p className="text-sm sm:text-base text-[#555555] font-normal">
               Precision engineering, certified chain-of-custody sourcing, and continuous craftsmanship across high-value architecture.
             </p>
           </div>
@@ -32,15 +32,15 @@ export function CorporateWhyHYLY() {
             {metrics.map((m) => (
               <div
                 key={m.label}
-                className="hyly-card p-6 sm:p-8 bg-white border border-[#E5E5E5] flex flex-col justify-center text-center shadow-sm"
+                className="hyly-card p-6 sm:p-8 bg-white border border-[#E5E5E5] flex flex-col justify-center text-center shadow-xs transition-all hover:border-[#8B6A4D]/40"
               >
-                <div className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-[#111111] mb-2">
+                <div className="font-serif text-4xl sm:text-5xl md:text-6xl font-medium tracking-tight text-[#111111] mb-2">
                   {m.number}
                 </div>
-                <div className="text-xs sm:text-sm font-semibold text-[#111111] mb-1">
+                <div className="text-xs sm:text-sm font-semibold text-[#111111] mb-1 font-sans">
                   {m.label}
                 </div>
-                <div className="text-[11px] text-[#8E8E8E] font-light leading-snug">
+                <div className="text-[11px] sm:text-xs text-[#555555] font-normal leading-snug font-sans">
                   {m.desc}
                 </div>
               </div>
