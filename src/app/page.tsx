@@ -2,6 +2,7 @@
 
 import React from "react";
 import { HeroShowcase } from "@/components/home/HeroShowcase";
+import { ArchitecturalMetamorphosis } from "@/components/home/ArchitecturalMetamorphosis";
 import { AboutAccordion } from "@/components/home/AboutAccordion";
 import { StatisticsMosaic } from "@/components/home/StatisticsMosaic";
 import { MaterialsGrid } from "@/components/home/MaterialsGrid";
@@ -16,19 +17,22 @@ import { Button } from "@/components/shared/Button";
 export default function HomePage() {
   return (
     <div className="bg-[#F7F5F2]">
-      {/* SECTION 1: Hero with 3-Image Grid */}
+      {/* SECTION 1: Hero with Dedicated Mobile Single Visual & Desktop 3-Image Grid */}
       <HeroShowcase />
 
-      {/* SECTION 2: About HYLY with Accordion (Image Left, Content Right) */}
+      {/* SECTION 2: GSAP Architectural Transformation Sequence */}
+      <ArchitecturalMetamorphosis />
+
+      {/* SECTION 3: About HYLY with Accordion (Image Left, Content Right) */}
       <AboutAccordion />
 
-      {/* SECTION 3: Statistics Asymmetric Bento Mosaic */}
+      {/* SECTION 4: Statistics Bento Mosaic (Condensed on Mobile) */}
       <StatisticsMosaic />
 
-      {/* SECTION 4: Materials Showcase (Large Cards) */}
+      {/* SECTION 5: Materials Showcase (Horizontal Snap on Mobile) */}
       <MaterialsGrid />
 
-      {/* SECTION 5: Services (Alternating Layout) */}
+      {/* SECTION 6: Services (Discipline Switcher on Mobile, Alternating on Desktop) */}
       <AlternatingServices />
 
       {/* SECTION 6: Projects (Masonry Portfolio with Categories) */}

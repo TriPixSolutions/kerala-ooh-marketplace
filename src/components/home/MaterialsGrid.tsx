@@ -67,7 +67,57 @@ export function MaterialsGrid() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        {/* MOBILE HORIZONTAL SNAP STRIP (block md:hidden) */}
+        <div className="block md:hidden">
+          <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-none -mx-4 px-4">
+            {materials.map((mat) => (
+              <Link
+                key={mat.title}
+                href={mat.href}
+                className="group relative shrink-0 w-[82vw] max-w-[340px] rounded-[24px] overflow-hidden bg-[#EAE7E1] aspect-[4/4.5] flex flex-col justify-end p-6 snap-center shadow-md border border-[#E5E5E5]/60"
+              >
+                <Image
+                  src={mat.image}
+                  alt={mat.title}
+                  fill
+                  sizes="85vw"
+                  className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent" />
+
+                <div className="relative z-10 text-white">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#D9C3A5] mb-1.5 block">
+                    {mat.category}
+                  </span>
+
+                  <div className="flex items-center justify-between mb-2">
+                    <h3 className="font-serif-editorial text-2xl font-normal text-white">
+                      {mat.title}
+                    </h3>
+                    <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white">
+                      <ArrowUpRight className="w-4 h-4" />
+                    </div>
+                  </div>
+
+                  <p className="text-xs font-light text-white/80 leading-relaxed line-clamp-2 mb-3">
+                    {mat.description}
+                  </p>
+
+                  <div className="text-[10px] font-mono text-[#D9C3A5] pt-2 border-t border-white/15">
+                    {mat.spec}
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          <div className="flex items-center justify-center gap-2 mt-4 text-[11px] font-mono uppercase tracking-widest text-[#8B6A4D]">
+            <span>Swipe to explore materials →</span>
+          </div>
+        </div>
+
+        {/* DESKTOP 2x2 GRID (hidden md:grid) */}
+        <div className="hidden md:grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {materials.map((mat) => (
             <Link
               key={mat.title}
@@ -78,7 +128,7 @@ export function MaterialsGrid() {
                 src={mat.image}
                 alt={mat.title}
                 fill
-                sizes="(max-width: 768px) 100vw, 50vw"
+                sizes="50vw"
                 className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-transparent transition-opacity duration-300 group-hover:from-black/85" />

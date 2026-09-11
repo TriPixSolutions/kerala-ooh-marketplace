@@ -78,20 +78,54 @@ export function HeroShowcase() {
           </div>
         </div>
 
-        {/* 3 Image Showcase Grid (matching Reference Screenshot 3) */}
+        {/* MOBILE HERO: Single Immersive Architectural Visual (block md:hidden) */}
+        <div className="block md:hidden max-w-lg mx-auto">
+          <div className="relative aspect-[4/5] w-full rounded-[28px] overflow-hidden bg-[#EAE7E1] shadow-[0_20px_40px_rgba(0,0,0,0.08)] group border border-[#E5E5E5]/60">
+            <Image
+              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=85&w=1400&auto=format&fit=crop"
+              alt="HYLY Architectural Living Space Execution"
+              fill
+              priority
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-105"
+            />
+            {/* Cinematic subtle vignette */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+            
+            {/* Floating Top Pill Badge */}
+            <div className="absolute top-4 left-4 z-10">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/80 backdrop-blur-md text-[10px] font-mono uppercase tracking-widest text-[#171717] shadow-sm border border-white/40">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#8B6A4D] animate-ping" />
+                Featured Residence
+              </span>
+            </div>
+
+            {/* Bottom Storytelling Caption */}
+            <div className="absolute bottom-5 left-5 right-5 z-10 text-white">
+              <span className="text-[10px] font-mono tracking-widest uppercase text-[#D6D3CD]/90 block mb-1">
+                Bespoke Joinery & Quarter-Cut Walnut
+              </span>
+              <p className="font-serif-editorial text-xl text-white font-normal italic leading-snug">
+                “Where architectural discipline meets hand-selected timber.”
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* DESKTOP SHOWCASE: 3 Image Layout (hidden md:grid) */}
         <div
           ref={imagesRef}
-          className="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8 items-end max-w-6xl mx-auto"
+          className="hidden md:grid md:grid-cols-12 gap-6 lg:gap-8 items-end max-w-6xl mx-auto"
         >
           {/* Left: Material Close-Up */}
           <div className="md:col-span-3">
-            <div className="relative aspect-[3/4] md:aspect-[3/4.2] w-full rounded-[28px] overflow-hidden bg-[#EAE7E1] shadow-[0_15px_35px_rgba(0,0,0,0.04)] group">
+            <div className="relative aspect-[3/4.2] w-full rounded-[28px] overflow-hidden bg-[#EAE7E1] shadow-[0_15px_35px_rgba(0,0,0,0.04)] group">
               <Image
                 src="https://images.unsplash.com/photo-1546484475-7f7bd55792da?q=85&w=1200&auto=format&fit=crop"
                 alt="HYLY Natural Timber Veneer Specimen"
                 fill
                 priority
-                sizes="(max-width: 768px) 100vw, 25vw"
+                sizes="25vw"
                 className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -103,13 +137,13 @@ export function HeroShowcase() {
 
           {/* Center: Monumental Luxury Interior (Tallest) */}
           <div className="md:col-span-6">
-            <div className="relative aspect-[4/5] md:aspect-[4/4.8] w-full rounded-[28px] overflow-hidden bg-[#EAE7E1] shadow-[0_20px_45px_rgba(0,0,0,0.06)] group">
+            <div className="relative aspect-[4/4.8] w-full rounded-[28px] overflow-hidden bg-[#EAE7E1] shadow-[0_20px_45px_rgba(0,0,0,0.06)] group">
               <Image
                 src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=85&w=1600&auto=format&fit=crop"
                 alt="HYLY Architectural Living Space Execution"
                 fill
                 priority
-                sizes="(max-width: 768px) 100vw, 50vw"
+                sizes="50vw"
                 className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -121,13 +155,13 @@ export function HeroShowcase() {
 
           {/* Right: Hardware Detail */}
           <div className="md:col-span-3">
-            <div className="relative aspect-[3/4] md:aspect-[3/4.2] w-full rounded-[28px] overflow-hidden bg-[#EAE7E1] shadow-[0_15px_35px_rgba(0,0,0,0.04)] group">
+            <div className="relative aspect-[3/4.2] w-full rounded-[28px] overflow-hidden bg-[#EAE7E1] shadow-[0_15px_35px_rgba(0,0,0,0.04)] group">
               <Image
                 src="https://images.unsplash.com/photo-1513694203232-719a280e022f?q=85&w=1200&auto=format&fit=crop"
                 alt="HYLY Architectural Hardware Detail"
                 fill
                 priority
-                sizes="(max-width: 768px) 100vw, 25vw"
+                sizes="25vw"
                 className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
