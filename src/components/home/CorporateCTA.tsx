@@ -25,12 +25,12 @@ export function CorporateCTA() {
               Architectural Collaboration
             </span>
 
-            <h2 className="font-serif text-4xl sm:text-6xl md:text-7xl font-normal tracking-tight text-white leading-[1.08]">
+            <h2 className="font-serif text-4xl sm:text-6xl md:text-7xl font-normal tracking-tight !text-white leading-[1.08]">
               Let&apos;s Build Something <br className="hidden sm:inline" />
               Exceptional.
             </h2>
 
-            <p className="font-sans text-sm sm:text-base md:text-lg text-[#ECE7DF]/90 leading-relaxed font-normal">
+            <p className="font-sans text-sm sm:text-base md:text-lg !text-white/90 leading-relaxed font-normal">
               Connect with our material consultants for CAD joinery reviews, custom veneer flitch matching, or bespoke interior specifications.
             </p>
 

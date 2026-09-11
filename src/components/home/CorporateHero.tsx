@@ -40,16 +40,16 @@ export function CorporateHero() {
       {/* Large Centered Editorial Content */}
       <Container size="wide" className="relative z-10 w-full">
         <div ref={contentRef} className="max-w-4xl mx-auto text-center px-4 space-y-6 sm:space-y-8">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs font-mono tracking-widest text-white uppercase shadow-sm">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs font-mono tracking-widest !text-white uppercase shadow-sm">
             Architectural Materiality & Precision
           </span>
 
-          <h1 className="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-[90px] font-normal tracking-tight text-white leading-[1.05] drop-shadow-md">
+          <h1 className="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-[90px] font-normal tracking-tight !text-white leading-[1.05] drop-shadow-md">
             Premium Materials <br />
             For Exceptional Spaces
           </h1>
 
-          <p className="font-sans text-base sm:text-xl font-normal text-[#F7F5F2] tracking-wide max-w-xl mx-auto drop-shadow-sm">
+          <p className="font-sans text-base sm:text-xl font-normal !text-white tracking-wide max-w-xl mx-auto drop-shadow-sm">
             Veneers, Decorative Surfaces, Plywood & Hardware
           </p>
 
