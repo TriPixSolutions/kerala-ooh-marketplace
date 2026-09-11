@@ -1,77 +1,266 @@
-import Link from "next/link";
+"use client";
 
-const locations = ["Kochi", "Thiruvananthapuram", "Kozhikode", "Thrissur", "Malappuram", "Kannur"];
+import React, { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { HeroSection } from "@/components/hero/HeroSection";
+import { ServiceGrid } from "@/components/services/ServiceGrid";
+import { ProjectGrid } from "@/components/projects/ProjectGrid";
+import { MaterialsShowcase } from "@/components/home/MaterialsShowcase";
+import { WhyChooseHyly } from "@/components/home/WhyChooseHyly";
+import { ProcessTimeline } from "@/components/home/ProcessTimeline";
+import { CTABanner } from "@/components/shared/CTA";
+import { Container } from "@/components/shared/Container";
+import { SectionHeading } from "@/components/shared/SectionHeading";
+import { Button } from "@/components/shared/Button";
+import { companyData } from "@/lib/data/company";
+import { SampleRequestModal } from "@/components/shared/SampleRequestModal";
+import { ArrowUpRight, Compass, Sparkles, MapPin, CheckCircle } from "lucide-react";
 
 export default function HomePage() {
+  const [sampleModalOpen, setSampleModalOpen] = useState(false);
+  const [selectedMaterialSample, setSelectedMaterialSample] = useState<string | undefined>(undefined);
+
+  const handleOpenSampleModal = (materialName?: string) => {
+    setSelectedMaterialSample(materialName);
+    setSampleModalOpen(true);
+  };
+
   return (
-    <main className="min-h-screen bg-[var(--surface)] text-[var(--ink)]">
-      <header className="border-b border-[var(--border)] bg-white/90 backdrop-blur">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-8">
-          <Link href="/" className="text-[15px] font-semibold tracking-[0.16em]">YOUR AD SPACE</Link>
-          <nav className="hidden items-center gap-8 text-sm text-[var(--slate)] md:flex">
-            <Link href="/listings" className="hover:text-[var(--ink)]">Spaces</Link>
-            <Link href="/#locations" className="hover:text-[var(--ink)]">Locations</Link>
-            <Link href="/#how-it-works" className="hover:text-[var(--ink)]">How it works</Link>
-            <Link href="/#owners" className="hover:text-[var(--ink)]">For listing owners</Link>
-          </nav>
-          <Link href="/auth/login" className="rounded-xl bg-[var(--ink)] px-4 py-2.5 text-sm font-semibold text-white">Sign in</Link>
-        </div>
-      </header>
+    <div className="bg-[#090a0c]">
+      {/* 1. Premium Hero Section */}
+      <HeroSection onOpenSampleModal={() => handleOpenSampleModal()} />
 
-      <section className="mx-auto max-w-7xl px-6 pb-20 pt-20 lg:px-8 lg:pb-28 lg:pt-28">
-        <div className="max-w-4xl">
-          <p className="mb-6 text-sm font-semibold uppercase tracking-[0.18em] text-[var(--slate)]">Kerala outdoor advertising marketplace</p>
-          <h1 className="max-w-4xl text-5xl font-semibold leading-[1.03] tracking-[-0.045em] sm:text-6xl lg:text-7xl">Find the space that fits your campaign.</h1>
-          <p className="mt-7 max-w-2xl text-base leading-7 text-[var(--slate)] sm:text-lg">Discover billboards, hoardings, LED screens and public displays across Kerala — with location, pricing, estimated reach and availability in one place.</p>
-        </div>
+      {/* 2. About HYLY Preview */}
+      <section className="py-24 sm:py-32 md:py-40 bg-[#0c0d10] border-t border-white/[0.08] relative overflow-hidden">
+        <Container>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            <div className="lg:col-span-5 relative">
+              <div className="relative aspect-[4/5] w-full overflow-hidden bg-[#16191f] border border-white/[0.08]">
+                <Image
+                  src="https://images.unsplash.com/photo-1546484475-7f7bd55792da?q=80&w=1600&auto=format&fit=crop"
+                  alt="HYLY Master Timber Joinery and Architectural Veneer Craft"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  className="object-cover object-center brightness-90 hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0c0d10] via-transparent to-transparent opacity-80" />
+                
+                <div className="absolute bottom-6 left-6 right-6 p-5 bg-[#111317]/90 backdrop-blur-md border border-white/[0.1]">
+                  <div className="text-xs font-mono text-[#c5a880] uppercase tracking-wider mb-1">
+                    Atelier Standard
+                  </div>
+                  <div className="text-sm font-light text-[#f6f4f0]">
+                    "Materials are not merely surfaces; they dictate how light, sound, and human presence interact within architectural volume."
+                  </div>
+                </div>
+              </div>
+            </div>
 
-        <div className="mt-12 rounded-2xl border border-[var(--border-strong)] bg-white p-3 shadow-[var(--shadow-soft)] sm:p-4">
-          <div className="grid gap-3 lg:grid-cols-[1.3fr_1fr_auto]">
-            <label className="flex min-h-14 items-center gap-3 rounded-xl bg-[var(--surface)] px-4">
-              <span className="text-[var(--muted)]">⌕</span>
-              <input aria-label="Search advertising spaces" placeholder="Search by city, landmark or space" className="w-full bg-transparent text-sm outline-none placeholder:text-[var(--muted)]" />
-            </label>
-            <label className="flex min-h-14 items-center gap-3 rounded-xl border border-[var(--border)] bg-white px-4">
-              <span className="text-sm text-[var(--slate)]">Type</span>
-              <select aria-label="Advertising type" className="w-full bg-transparent text-sm outline-none">
-                <option>All spaces</option><option>Billboard</option><option>Hoarding</option><option>LED screen</option><option>Restaurant screen</option>
-              </select>
-            </label>
-            <Link href="/listings" className="flex min-h-14 items-center justify-center rounded-xl bg-[var(--ink)] px-7 text-sm font-semibold text-white">Search spaces</Link>
+            <div className="lg:col-span-7">
+              <SectionHeading
+                eyebrow="The Philosophy of Craft"
+                title={
+                  <>
+                    Where Botanical Beauty Meets{" "}
+                    <span className="italic font-serif text-[#c5a880]">Engineering</span> Rigor
+                  </>
+                }
+                subtitle="For over 25 years, HYLY has operated at the intersection of raw material authenticity and precision architectural manufacturing. We bridge the timeless traditions of master carpentry with modern 5-axis CNC technologies."
+                className="mb-8"
+              />
+
+              <div className="space-y-4 text-sm sm:text-base font-light text-[#9ea3b0] leading-relaxed mb-10">
+                <p>
+                  {companyData.story.heritage}
+                </p>
+                <p>
+                  From rare bookmatched walnut flitches that travel from European managed reserves to precision calibrated BWP cores that withstand tropical moisture, every commission is executed with obsessive attention to reveals, acoustic dampening, and hand-rubbed finishes.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-2 gap-6 pt-6 border-t border-white/[0.08] mb-10">
+                <div>
+                  <span className="block text-2xl sm:text-3xl font-light text-[#f6f4f0] font-mono">
+                    1,200+
+                  </span>
+                  <span className="text-xs font-mono uppercase tracking-wider text-[#9ea3b0]">
+                    Veneer & Surface Archive
+                  </span>
+                </div>
+                <div>
+                  <span className="block text-2xl sm:text-3xl font-light text-[#f6f4f0] font-mono">
+                    E0 / CARB II
+                  </span>
+                  <span className="text-xs font-mono uppercase tracking-wider text-[#9ea3b0]">
+                    Zero Toxic Formaldehyde
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-4">
+                <Button href="/about" variant="primary" size="md" withArrow>
+                  Read Our Full Story
+                </Button>
+                <Button href="/projects" variant="outline" size="md">
+                  View Architectural Portfolio
+                </Button>
+              </div>
+            </div>
           </div>
-        </div>
-
-        <div id="spaces" className="mt-16 grid gap-5 md:grid-cols-3">
-          <Link href="/listings" className="rounded-2xl border border-[var(--border)] bg-white p-6 transition hover:border-[var(--border-strong)]">
-            <p className="text-sm text-[var(--slate)]">Listed spaces</p><p className="mt-2 text-3xl font-semibold tracking-tight">Kerala-wide</p><p className="mt-2 text-sm text-[var(--muted)]">Browse advertising inventory by location.</p>
-          </Link>
-          <Link href="/listings" className="rounded-2xl border border-[var(--border)] bg-white p-6 transition hover:border-[var(--border-strong)]">
-            <p className="text-sm text-[var(--slate)]">Compare what matters</p><p className="mt-2 text-3xl font-semibold tracking-tight">Price · Reach</p><p className="mt-2 text-sm text-[var(--muted)]">See the decision-making details before you enquire.</p>
-          </Link>
-          <Link href="/auth/login" className="rounded-2xl border border-[var(--border)] bg-white p-6 transition hover:border-[var(--border-strong)]">
-            <p className="text-sm text-[var(--slate)]">Start a conversation</p><p className="mt-2 text-3xl font-semibold tracking-tight">Directly</p><p className="mt-2 text-sm text-[var(--muted)]">Sign in to ask a listing owner about availability and campaign fit.</p>
-          </Link>
-        </div>
-
-        <section id="locations" className="mt-24 border-t border-[var(--border)] pt-10">
-          <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end"><div><p className="text-sm font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">Explore locations</p><h2 className="mt-2 text-3xl font-semibold tracking-[-0.03em]">Start with a city.</h2></div><Link href="/listings" className="text-sm font-semibold underline underline-offset-4">View all locations</Link></div>
-          <div className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {locations.map((location) => <Link key={location} href={`/listings?city=${encodeURIComponent(location)}`} className="flex items-center justify-between rounded-xl border border-[var(--border)] bg-white px-5 py-4 text-left text-sm font-medium hover:border-[var(--border-strong)]">{location}<span className="text-[var(--muted)]">→</span></Link>)}
-          </div>
-        </section>
-
-        <section id="how-it-works" className="mt-24 grid gap-8 border-t border-[var(--border)] pt-12 lg:grid-cols-3">
-          <Link href="/listings" className="block"><p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">01</p><h3 className="mt-4 text-xl font-semibold">Search</h3><p className="mt-3 max-w-sm text-sm leading-6 text-[var(--slate)]">Find spaces by city, advertising type, price and campaign requirements.</p></Link>
-          <Link href="/listings" className="block"><p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">02</p><h3 className="mt-4 text-xl font-semibold">Compare</h3><p className="mt-3 max-w-sm text-sm leading-6 text-[var(--slate)]">Understand dimensions, estimated views, availability and location context.</p></Link>
-          <Link href="/auth/login" className="block"><p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">03</p><h3 className="mt-4 text-xl font-semibold">Enquire</h3><p className="mt-3 max-w-sm text-sm leading-6 text-[var(--slate)]">Send an enquiry and continue the discussion directly with the space owner.</p></Link>
-        </section>
-
-        <section id="owners" className="mt-24 rounded-3xl bg-[var(--ink)] px-7 py-10 text-white sm:px-10 lg:px-12">
-          <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between"><div className="max-w-2xl"><p className="text-sm font-semibold uppercase tracking-[0.16em] text-white/55">For listing owners</p><h2 className="mt-4 text-3xl font-semibold tracking-[-0.03em] sm:text-4xl">Put your advertising spaces where campaigns are looking.</h2><p className="mt-4 max-w-xl text-sm leading-6 text-white/65">Create a listing, manage availability and pricing, and receive enquiries from businesses and agencies.</p></div><Link href="/owner/listings/new" className="rounded-xl bg-white px-5 py-3 text-sm font-semibold text-[var(--ink)]">List a space</Link></div>
-        </section>
+        </Container>
       </section>
 
-      <footer className="border-t border-[var(--border)] bg-white"><div className="mx-auto flex max-w-7xl flex-col gap-3 px-6 py-8 text-sm text-[var(--slate)] sm:flex-row sm:items-center sm:justify-between lg:px-8"><Link href="/" className="font-semibold text-[var(--ink)]">YOUR AD SPACE</Link><span>Find the space. Understand the opportunity. Start the conversation.</span></div></footer>
-    </main>
+      {/* 3. Services Overview */}
+      <section className="py-24 sm:py-32 bg-[#090a0c] border-t border-white/[0.08]">
+        <Container>
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+            <SectionHeading
+              eyebrow="Core Disciplines"
+              title={
+                <>
+                  Six Pillars of{" "}
+                  <span className="italic font-serif text-[#c5a880]">Material</span> Excellence
+                </>
+              }
+              subtitle="From raw botanical leaves to fully integrated residential dressing suites, discover our six specialized architectural disciplines."
+              className="mb-0"
+            />
+            <Button href="/services" variant="outline" size="md" withArrow>
+              All Disciplines
+            </Button>
+          </div>
+
+          <ServiceGrid />
+        </Container>
+      </section>
+
+      {/* 4. Featured Projects */}
+      <section className="py-24 sm:py-32 bg-[#0d0f12] border-t border-white/[0.08]">
+        <Container>
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+            <SectionHeading
+              eyebrow="Curated Portfolio"
+              title={
+                <>
+                  Landmark Commissions &{" "}
+                  <span className="italic font-serif text-[#c5a880]">Private</span> Estates
+                </>
+              }
+              subtitle="A selection of luxury residences, corporate headquarters, and bespoke interior spaces brought to life with HYLY materials."
+              className="mb-0"
+            />
+            <Button href="/projects" variant="primary" size="md" withArrow>
+              Explore All Projects
+            </Button>
+          </div>
+
+          <ProjectGrid limit={4} showFilter={false} />
+        </Container>
+      </section>
+
+      {/* 5. Materials Showcase */}
+      <MaterialsShowcase
+        onOpenSampleModal={(materialName) => handleOpenSampleModal(materialName)}
+      />
+
+      {/* 6. Why Choose HYLY */}
+      <WhyChooseHyly />
+
+      {/* 7. Process Timeline */}
+      <ProcessTimeline />
+
+      {/* 8. CTA Banner */}
+      <CTABanner />
+
+      {/* 9. Contact Preview & Studio Locator */}
+      <section className="py-24 sm:py-32 bg-[#090a0c] border-t border-white/[0.08]">
+        <Container>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-6">
+              <SectionHeading
+                eyebrow="Experience Centres"
+                title={
+                  <>
+                    Visit an Architectural{" "}
+                    <span className="italic font-serif text-[#c5a880]">Material</span> Atelier
+                  </>
+                }
+                subtitle="Experience full-scale veneer bookmatches, acoustic installations, and soft-closing hardware displays in person at our flagship studios."
+                className="mb-8"
+              />
+
+              <div className="space-y-6 mb-10">
+                {companyData.studios.map((studio) => (
+                  <div
+                    key={studio.city}
+                    className="p-6 bg-[#111317] border border-white/[0.06] hover:border-[#c5a880]/30 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+                  >
+                    <div>
+                      <div className="text-xs font-mono uppercase text-[#c5a880] mb-1">
+                        {studio.type}
+                      </div>
+                      <div className="text-xl font-light text-[#f6f4f0]">
+                        {studio.city}
+                      </div>
+                      <div className="text-xs text-[#9ea3b0] mt-1">
+                        {studio.address}
+                      </div>
+                    </div>
+                    <Button
+                      href={studio.mapUrl}
+                      external
+                      variant="outline"
+                      size="sm"
+                      withArrow
+                    >
+                      Directions
+                    </Button>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex items-center gap-4">
+                <Button href="/contact" variant="brass" size="md" withArrow>
+                  Schedule Studio Appointment
+                </Button>
+              </div>
+            </div>
+
+            <div className="lg:col-span-6 relative">
+              <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#16191f] border border-white/[0.08]">
+                <Image
+                  src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1600&auto=format&fit=crop"
+                  alt="HYLY Flagship Experience Centre"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover object-center brightness-90"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#090a0c] via-transparent to-transparent opacity-80" />
+
+                <div className="absolute bottom-6 left-6 right-6 p-6 bg-[#121418]/90 backdrop-blur-md border border-white/[0.1] flex items-center justify-between">
+                  <div>
+                    <span className="block text-xs font-mono uppercase tracking-wider text-[#c5a880]">
+                      Architectural Library
+                    </span>
+                    <span className="text-sm font-light text-[#f6f4f0]">
+                      Over 1,200 physical material leaves ready for specification review.
+                    </span>
+                  </div>
+                  <Compass className="w-6 h-6 text-[#c5a880] shrink-0 ml-4" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Global Sample Request Modal */}
+      <SampleRequestModal
+        isOpen={sampleModalOpen}
+        onClose={() => setSampleModalOpen(false)}
+        defaultMaterial={selectedMaterialSample}
+      />
+    </div>
   );
 }
